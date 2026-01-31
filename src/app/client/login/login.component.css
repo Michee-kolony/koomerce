@@ -1,0 +1,23 @@
+
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.floating-logo {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .min-h-screen {
+    padding: 1rem;
+  }
+  
+  .max-w-md {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}

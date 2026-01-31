@@ -1,0 +1,426 @@
+<!-- Carrousel e-commerce amélioré -->
+<div id="ecommerceCarousel" class="carousel slide relative w-full overflow-hidden" data-bs-ride="carousel">
+  <!-- Indicateurs améliorés -->
+  <div class="carousel-indicators absolute bottom-6 left-0 right-0 flex justify-center space-x-3 z-10">
+    <button type="button" data-bs-target="#ecommerceCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Promotion 1">
+      <span class="inline-block px-4 py-2 bg-black/60 text-white rounded-full text-sm font-medium transition-all duration-300 hover:scale-105">Promo -50%</span>
+    </button>
+    <button type="button" data-bs-target="#ecommerceCarousel" data-bs-slide-to="1" aria-label="Nouveauté">
+      <span class="inline-block px-4 py-2 bg-black/60 text-white rounded-full text-sm font-medium transition-all duration-300 hover:scale-105">Nouveauté</span>
+    </button>
+    <button type="button" data-bs-target="#ecommerceCarousel" data-bs-slide-to="2" aria-label="Meilleure vente">
+      <span class="inline-block px-4 py-2 bg-black/60 text-white rounded-full text-sm font-medium transition-all duration-300 hover:scale-105">Best-seller</span>
+    </button>
+  </div>
+  
+  <!-- Contenu du carrousel -->
+  <div class="carousel-inner relative w-full overflow-hidden">
+    <!-- Slide 1 avec promotion -->
+    <div class="carousel-item active relative float-left w-full">
+      <img src="images/2.jpg" 
+           class="block w-full h-[600px] md:h-[700px] object-cover" 
+           alt="Promotion spéciale sur les smartphones">
+      
+      <!-- Overlay desktop -->
+      <div class="absolute inset-0 hidden md:flex flex-col justify-center items-start p-8 lg:p-16 bg-gradient-to-r from-black/70 via-black/40 to-transparent">
+        <span class="bg-red-500 text-white text-lg px-4 py-2 rounded mb-6">LIMITÉE</span>
+        <h2 class="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6">Promotion -50%</h2>
+        <p class="text-xl lg:text-2xl text-white mb-8 max-w-2xl">
+          Sur tous les smartphones de la marque TechPro. Offre valable jusqu'au 30 juin.
+        </p>
+        <div class="flex space-x-4">
+          <a href="#promotion" class="bg-blue-600 hover:bg-blue-700 text-decoration-none text-white text-lg px-8 py-4 rounded-lg flex items-center transition-colors duration-300">
+            <i class="fas fa-bolt mr-2"></i>Voir l'offre
+          </a>
+          <a href="#produits" class="border-2 border-white text-decoration-none text-white hover:bg-white/10 text-lg px-8 py-4 rounded-lg transition-colors duration-300">
+            Découvrir
+          </a>
+        </div>
+      </div>
+      
+      <!-- Overlay mobile -->
+      <div class="absolute inset-0 md:hidden flex flex-col justify-center p-6 bg-gradient-to-r from-black/70 via-black/50 to-black/30">
+        <span class="bg-red-500 text-white px-3 py-1.5 rounded text-sm mb-4 self-start">LIMITÉE</span>
+        <h2 class="text-2xl font-bold text-white mb-4">Promotion -50%</h2>
+        <p class="text-white mb-6">
+          Sur tous les smartphones TechPro. Offre valable jusqu'au 30 juin.
+        </p>
+        <div class="flex space-x-3">
+          <a href="#promotion" class="bg-blue-600 hover:bg-blue-700 text-decoration-none text-white px-4 py-2.5 rounded flex items-center text-sm transition-colors duration-300">
+            <i class="fas fa-bolt mr-2"></i>Voir l'offre
+          </a>
+          <a href="#produits" class="border border-white text-white text-decoration-none hover:bg-white/10 px-4 py-2.5 rounded text-sm transition-colors duration-300">
+            Découvrir
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Slide 2 avec nouveauté -->
+    <div class="carousel-item relative float-left w-full">
+      <img src="images/3.jpg" 
+           class="block w-full h-[600px] md:h-[700px] object-cover" 
+           alt="Nouveaux écouteurs sans fil">
+      
+      <!-- Overlay desktop -->
+      <div class="absolute inset-0 hidden md:flex flex-col justify-center items-end p-8 lg:p-16 bg-gradient-to-l from-black/70 via-black/40 to-transparent">
+        <span class="bg-green-600 text-white text-lg px-4 py-2 rounded mb-6">NOUVEAU</span>
+        <h2 class="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 text-right">Écouteurs ProSound X</h2>
+        <p class="text-xl lg:text-2xl text-white mb-8 max-w-2xl text-right">
+          Découvrez notre dernier modèle avec annulation active du bruit.
+        </p>
+        <div class="flex space-x-4 justify-end">
+          <a href="#produit" class="bg-green-600 hover:bg-green-700 text-decoration-none text-white text-lg px-8 py-4 rounded-lg flex items-center transition-colors duration-300">
+            <i class="fas fa-info-circle mr-2"></i>En savoir plus
+          </a>
+          <a href="#achat" class="border-2 border-white text-decoration-none text-white hover:bg-white/10 text-lg px-8 py-4 rounded-lg flex items-center transition-colors duration-300">
+            <i class="fas fa-shopping-cart mr-2"></i>Acheter
+          </a>
+        </div>
+      </div>
+      
+      <!-- Overlay mobile -->
+      <div class="absolute inset-0 md:hidden flex flex-col justify-center p-6 bg-gradient-to-l from-black/70 via-black/50 to-black/30">
+        <span class="bg-green-600 text-white px-3 py-1.5 rounded text-sm mb-4 self-end">NOUVEAU</span>
+        <h2 class="text-2xl font-bold text-white mb-4 text-right">Écouteurs ProSound X</h2>
+        <p class="text-white mb-6 text-right">
+          Dernier modèle avec annulation active du bruit.
+        </p>
+        <div class="flex space-x-3 justify-end">
+          <a href="#produit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded flex items-center text-sm transition-colors duration-300">
+            <i class="fas fa-info-circle mr-2"></i>Découvrir
+          </a>
+          <a href="#achat" class="border border-white text-white hover:bg-white/10 px-4 py-2.5 rounded flex items-center text-sm transition-colors duration-300">
+            <i class="fas fa-shopping-cart mr-2"></i>Acheter
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Slide 3 avec best-seller -->
+    <div class="carousel-item relative float-left w-full">
+      <img src="images/4.jpg"
+           class="block w-full h-[600px] md:h-[700px] object-cover" 
+           alt="Montre connectée populaire">
+      
+      <!-- Overlay desktop -->
+      <div class="absolute inset-0 hidden md:flex flex-col justify-center items-start p-8 lg:p-16 bg-gradient-to-r from-black/70 via-black/40 to-transparent">
+        <span class="bg-yellow-400 text-black text-lg px-4 py-2 rounded mb-6">BEST-SELLER</span>
+        <h2 class="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6">SmartWatch 9</h2>
+        <p class="text-xl lg:text-2xl text-white mb-8 max-w-2xl">
+          La montre connectée la plus vendue du moment. Plus de 10 000 ventes ce mois-ci.
+        </p>
+        <div class="flex items-center space-x-8">
+          <a href="#produit" class="bg-gray-900 hover:bg-black text-decoration-none text-white text-lg px-8 py-4 rounded-lg flex items-center transition-colors duration-300">
+            <i class="fas fa-star mr-2"></i>Acheter maintenant
+          </a>
+          <div class="text-white">
+            <div class="flex items-center">
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400 ml-1"></i>
+              <i class="fas fa-star text-yellow-400 ml-1"></i>
+              <i class="fas fa-star text-yellow-400 ml-1"></i>
+              <i class="fas fa-star-half-alt text-yellow-400 ml-1"></i>
+              <span class="ml-3">4.5/5 (2.1k avis)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Overlay mobile -->
+      <div class="absolute inset-0 md:hidden flex flex-col justify-center p-6 bg-gradient-to-r from-black/70 via-black/50 to-black/30">
+        <span class="bg-yellow-400 text-black px-3 py-1.5 rounded text-sm mb-4 self-start">BEST-SELLER</span>
+        <h2 class="text-2xl font-bold text-white mb-4">SmartWatch 9</h2>
+        <p class="text-white mb-6">
+          Plus de 10 000 ventes ce mois-ci.
+        </p>
+        <div class="flex flex-col space-y-4">
+          <a href="#produit" class="bg-gray-900 hover:bg-black text-white px-4 py-2.5 rounded flex items-center text-sm transition-colors duration-300 self-start">
+            <i class="fas fa-star mr-2"></i>Acheter maintenant
+          </a>
+          <div class="text-white">
+            <div class="flex items-center">
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400 ml-1"></i>
+              <i class="fas fa-star text-yellow-400 ml-1"></i>
+              <i class="fas fa-star text-yellow-400 ml-1"></i>
+              <i class="fas fa-star-half-alt text-yellow-400 ml-1"></i>
+              <span class="ml-2 text-sm">4.5/5 (2.1k avis)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- Timer de l'offre (optionnel) -->
+  <div class="carousel-timer absolute top-32 right-4 hidden lg:block">
+    <div class="bg-black/75 text-white p-4 rounded-lg text-center">
+      <p class="mb-2 text-sm">Offre expire dans:</p>
+      <div class="flex space-x-3 justify-center">
+        <div class="text-center">
+          <div class="bg-red-600 text-white rounded px-2 py-1 text-xl font-bold">02</div>
+          <small class="text-xs">Jours</small>
+        </div>
+        <div class="text-center">
+          <div class="bg-red-600 text-white rounded px-2 py-1 text-xl font-bold">12</div>
+          <small class="text-xs">Heures</small>
+        </div>
+        <div class="text-center">
+          <div class="bg-red-600 text-white rounded px-2 py-1 text-xl font-bold">45</div>
+          <small class="text-xs">Min</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="py-10 bg-gray-50">
+  <h3 class="text-2xl font-bold container mx-auto mb-6 px-4">Articles premium</h3>
+
+  <div id="image-carousel" class="splide container mx-auto px-4">
+    <div class="splide__track">
+      <ul class="splide__list">
+
+        <!-- PRODUIT 1 -->
+        <li class="splide__slide h-full">
+          <div class="bg-white rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full">
+            
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db"
+                   class="w-full h-40 sm:h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500" />
+              <span class="absolute top-3 left-3 bg-red-600 text-white text-xs px-3 py-1 rounded-full shadow">
+                -20%
+              </span>
+            </div>
+
+            <div class="p-3 sm:p-4 md:p-5 flex flex-col flex-grow">
+              <div class="min-h-[70px] sm:min-h-[80px]">
+                <h4 class="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+                  Casque Audio Bluetooth
+                </h4>
+                <p class="text-xs sm:text-sm text-gray-500 line-clamp-2">
+                  Son haute qualité, autonomie longue durée et design moderne.
+                </p>
+              </div>
+
+              <div class="mt-auto">
+                <div class="flex items-center gap-2 mb-2 sm:mb-3">
+                  <span class="text-lg sm:text-xl font-bold text-blue-600">49$</span>
+                  <span class="text-xs sm:text-sm text-gray-400 line-through">60$</span>
+                </div>
+
+                <button class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-xs sm:text-sm font-medium transition">
+                  Ajouter au panier 🛒
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </li>
+
+        <!-- PRODUIT 2 -->
+        <li class="splide__slide h-full">
+          <div class="bg-white rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full">
+            
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"
+                   class="w-full h-40 sm:h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500" />
+              <span class="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded-full shadow">
+                Nouveau
+              </span>
+            </div>
+
+            <div class="p-3 sm:p-4 md:p-5 flex flex-col flex-grow">
+              <div class="min-h-[70px] sm:min-h-[80px]">
+                <h4 class="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+                  Smartphone Pro X
+                </h4>
+                <p class="text-xs sm:text-sm text-gray-500 line-clamp-2">
+                  Écran AMOLED, appareil photo haute résolution et grande performance.
+                </p>
+              </div>
+
+              <div class="mt-auto">
+                <div class="flex items-center gap-2 mb-2 sm:mb-3">
+                  <span class="text-lg sm:text-xl font-bold text-green-600">699$</span>
+                </div>
+
+                <button class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-xs sm:text-sm font-medium transition">
+                  Ajouter au panier 🛒
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </li>
+
+        <!-- PRODUIT 3 -->
+        <li class="splide__slide h-full">
+          <div class="bg-white rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full">
+            
+            <div class="relative">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsI5HnmYv-U67LI2BYcJzzPuv2riCfG94jLQ&s"
+                   class="w-full h-40 sm:h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500" />
+              <span class="absolute top-3 left-3 bg-yellow-500 text-white text-xs px-3 py-1 rounded-full shadow">
+                Best Seller
+              </span>
+            </div>
+
+            <div class="p-3 sm:p-4 md:p-5 flex flex-col flex-grow">
+              <div class="min-h-[70px] sm:min-h-[80px]">
+                <h4 class="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+                  Montre Connectée FitPro
+                </h4>
+                <p class="text-xs sm:text-sm text-gray-500 line-clamp-2">
+                  Suivi santé, notifications et design élégant pour le quotidien.
+                </p>
+              </div>
+
+              <div class="mt-auto">
+                <div class="flex items-center gap-2 mb-2 sm:mb-3">
+                  <span class="text-lg sm:text-xl font-bold text-yellow-600">89$</span>
+                  <span class="text-xs sm:text-sm text-gray-400 line-through">120$</span>
+                </div>
+
+                <button class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-xs sm:text-sm font-medium transition">
+                  Ajouter au panier 🛒
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section class="py-10 bg-gray-50">
+  <h3 class="text-2xl font-bold container mx-auto mb-6 px-4">Articles premium</h3>
+
+  <div id="image-carousel2" class="splide container mx-auto px-4">
+    <div class="splide__track">
+      <ul class="splide__list">
+
+        <!-- PRODUIT 1 -->
+        <li class="splide__slide h-full">
+          <div class="bg-white rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full">
+            
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db"
+                   class="w-full h-40 sm:h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500" />
+              <span class="absolute top-3 left-3 bg-red-600 text-white text-xs px-3 py-1 rounded-full shadow">
+                -20%
+              </span>
+            </div>
+
+            <div class="p-3 sm:p-4 md:p-5 flex flex-col flex-grow">
+              <div class="min-h-[70px] sm:min-h-[80px]">
+                <h4 class="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+                  Casque Audio Bluetooth
+                </h4>
+                <p class="text-xs sm:text-sm text-gray-500 line-clamp-2">
+                  Son haute qualité, autonomie longue durée et design moderne.
+                </p>
+              </div>
+
+              <div class="mt-auto">
+                <div class="flex items-center gap-2 mb-2 sm:mb-3">
+                  <span class="text-lg sm:text-xl font-bold text-blue-600">49$</span>
+                  <span class="text-xs sm:text-sm text-gray-400 line-through">60$</span>
+                </div>
+
+                <button class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-xs sm:text-sm font-medium transition">
+                  Ajouter au panier 🛒
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </li>
+
+        <!-- PRODUIT 2 -->
+        <li class="splide__slide h-full">
+          <div class="bg-white rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full">
+            
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"
+                   class="w-full h-40 sm:h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500" />
+              <span class="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded-full shadow">
+                Nouveau
+              </span>
+            </div>
+
+            <div class="p-3 sm:p-4 md:p-5 flex flex-col flex-grow">
+              <div class="min-h-[70px] sm:min-h-[80px]">
+                <h4 class="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+                  Smartphone Pro X
+                </h4>
+                <p class="text-xs sm:text-sm text-gray-500 line-clamp-2">
+                  Écran AMOLED, appareil photo haute résolution et grande performance.
+                </p>
+              </div>
+
+              <div class="mt-auto">
+                <div class="flex items-center gap-2 mb-2 sm:mb-3">
+                  <span class="text-lg sm:text-xl font-bold text-green-600">699$</span>
+                </div>
+
+                <button class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-xs sm:text-sm font-medium transition">
+                  Ajouter au panier 🛒
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </li>
+
+        <!-- PRODUIT 3 -->
+        <li class="splide__slide h-full">
+          <div class="bg-white rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full">
+            
+            <div class="relative">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsI5HnmYv-U67LI2BYcJzzPuv2riCfG94jLQ&s"
+                   class="w-full h-40 sm:h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500" />
+              <span class="absolute top-3 left-3 bg-yellow-500 text-white text-xs px-3 py-1 rounded-full shadow">
+                Best Seller
+              </span>
+            </div>
+
+            <div class="p-3 sm:p-4 md:p-5 flex flex-col flex-grow">
+              <div class="min-h-[70px] sm:min-h-[80px]">
+                <h4 class="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+                  Montre Connectée FitPro
+                </h4>
+                <p class="text-xs sm:text-sm text-gray-500 line-clamp-2">
+                  Suivi santé, notifications et design élégant pour le quotidien.
+                </p>
+              </div>
+
+              <div class="mt-auto">
+                <div class="flex items-center gap-2 mb-2 sm:mb-3">
+                  <span class="text-lg sm:text-xl font-bold text-yellow-600">89$</span>
+                  <span class="text-xs sm:text-sm text-gray-400 line-through">120$</span>
+                </div>
+
+                <button class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-xs sm:text-sm font-medium transition">
+                  Ajouter au panier 🛒
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+
+
