@@ -34,15 +34,6 @@
           <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
         </a>
 
-        <a href="#" class="relative group text-decoration-none">
-          <span class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center space-x-1">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
-            </svg>
-            <span>Catégories</span>
-          </span>
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-        </a>
 
         <a href="#" class="relative group text-decoration-none">
           <span class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center space-x-1">
@@ -63,7 +54,14 @@
           </span>
           <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
         </a>
+         <a (click)="launchsearch()" class="relative group text-decoration-none cursor-pointer">
+          <span class="text-gray-700  font-medium transition-colors duration-200 flex items-center space-x-1">
+            <i class="fa-solid fa-search"></i>
+          </span>
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+        </a>
       </div>
+
       
        <button routerLink="/login" class="px-4 py-2 border text-black font-medium rounded-lg  transition-all duration-300 transform hover:-translate-y-0.5">
           Connexion
@@ -76,7 +74,7 @@
 </nav>
 
 <!-- Bottom Navigation -->
-<div class="fixed lg:hidden bottom-0 left-0 w-full bg-white border-t shadow-lg z-50">
+<div  class="fixed lg:hidden bottom-0 left-0 w-full bg-white border-t shadow-lg z-50">
   <div class="flex justify-around items-center h-16">
 
     <!-- Accueil -->
@@ -90,7 +88,7 @@
     </a>
 
     <!-- Recherche -->
-    <a href="#" class="flex flex-col items-center text-decoration-none text-gray-600 hover:text-blue-600">
+    <a (click)="launchsearch()" class="flex flex-col items-center text-decoration-none text-gray-600 hover:text-blue-600">
       <!-- Search Icon -->
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -121,3 +119,89 @@
 
   </div>
 </div>
+
+
+<!-- Overlay recherche -->
+<div *ngIf="search" class="fixed bg-black/50 backdrop-blur-xl top-0 bottom-0 left-0 right-0 z-50 overflow-auto">
+
+      <!-- Bouton fermer -->
+    <button (click)="launchsearch()" type="button" 
+            class="absolute top-2 right-6 text-white text-2xl font-bold hover:text-red-500 transition"
+            (click)="search = false">
+      &times;
+    </button>
+
+  <!-- Formulaire de recherche -->
+  <form class="mt-10 container mx-auto px-4 relative">
+    <!-- Barre de recherche -->
+    <div class="flex justify-center">
+      <div class="relative w-full max-w-xl">
+        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"></i>
+        <input 
+          type="text"
+          placeholder="Rechercher un article..."
+          class="w-full pl-12 pr-4 py-3 rounded-full bg-white/10 backdrop-blur-md text-white 
+                 border border-white/20 placeholder-gray-300 
+                 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent
+                 transition duration-300"
+        />
+      </div>
+    </div>
+
+  </form>
+
+  <!-- Résultats / Cards -->
+  <div class="container mx-auto px-4 mt-10 grid grid-cols-2 sm:grid-cols-2 gap-6 pb-10">
+
+    <!-- Card Article 1 -->
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition transform flex flex-col">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsI5HnmYv-U67LI2BYcJzzPuv2riCfG94jLQ&s" alt="Article 1" class="w-full h-48 object-cover">
+      <div class="p-4 flex flex-col flex-1">
+        <h3 class="font-semibold text-gray-800">Article 1</h3>
+        <p class="text-gray-500 mt-1 mb-4">$49.99</p>
+        <button class="mt-auto bg-red-500 text-white font-semibold py-2 px-4 rounded-lg transition">
+          Commander
+        </button>
+      </div>
+    </div>
+
+    <!-- Card Article 2 -->
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition transform flex flex-col">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsI5HnmYv-U67LI2BYcJzzPuv2riCfG94jLQ&s" alt="Article 2" class="w-full h-48 object-cover">
+      <div class="p-4 flex flex-col flex-1">
+        <h3 class="font-semibold text-gray-800">Article 2</h3>
+        <p class="text-gray-500 mt-1 mb-4">$29.99</p>
+        <button class="mt-auto bg-red-500 text-white font-semibold py-2 px-4 rounded-lg transition">
+          Commander
+        </button>
+      </div>
+    </div>
+
+    <!-- Card Article 3 -->
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition transform flex flex-col">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsI5HnmYv-U67LI2BYcJzzPuv2riCfG94jLQ&s" alt="Article 3" class="w-full h-48 object-cover">
+      <div class="p-4 flex flex-col flex-1">
+        <h3 class="font-semibold text-gray-800">Article 3</h3>
+        <p class="text-gray-500 mt-1 mb-4">$19.99</p>
+        <button class="mt-auto bg-red-500 text-white font-semibold py-2 px-4 rounded-lg transition">
+          Commander
+        </button>
+      </div>
+    </div>
+
+    <!-- Card Article 4 -->
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition transform flex flex-col">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsI5HnmYv-U67LI2BYcJzzPuv2riCfG94jLQ&s" alt="Article 4" class="w-full h-48 object-cover">
+      <div class="p-4 flex flex-col flex-1">
+        <h3 class="font-semibold text-gray-800">Article 4</h3>
+        <p class="text-gray-500 mt-1 mb-4">$99.99</p>
+        <button class="mt-auto bg-red-500 text-white font-semibold py-2 px-4 rounded-lg transition">
+          Commander
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+

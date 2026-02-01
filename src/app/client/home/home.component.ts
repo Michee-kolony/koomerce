@@ -8,6 +8,8 @@ import Splide from '@splidejs/splide';
 })
 export class HomeComponent implements AfterViewInit {
 
+search = false;
+
 ngAfterViewInit(): void {
  
   new Splide('#image-carousel', {
@@ -41,5 +43,10 @@ new Splide('#image-carousel2', {
 
 
   }
+
+launchsearch(){
+  this.search = !this.search
+}
+
 }
 

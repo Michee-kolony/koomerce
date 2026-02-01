@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+ 
+  search = false;
+
+
+launchsearch(){
+  this.search = !this.search
+}
 }
