@@ -9,6 +9,7 @@ import { KoomerceComponent } from './client/koomerce/koomerce.component';
 import { HomeComponent } from './client/home/home.component';
 import { NavbarComponent } from './client/navbar/navbar.component';
 import { FooterComponent } from './client/footer/footer.component';
+import { DetailsComponent } from './client/details/details.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FooterComponent } from './client/footer/footer.component';
     KoomerceComponent,
     HomeComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
