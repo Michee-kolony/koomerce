@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent {
+  isOpen = false;
 
+  toggleSidebar() {
+    this.isOpen = !this.isOpen;
+  }
 }

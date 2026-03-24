@@ -1,1 +1,131 @@
-<p>dashboard works!</p>
+<div class="space-y-6">
+
+  <!-- TITRE -->
+
+
+  <!-- STATS -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+    <!-- Total commandes -->
+    <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="text-gray-500 text-sm">Total commandes</p>
+          <h2 class="text-2xl font-bold text-gray-800">{{ totalCommandes }}</h2>
+        </div>
+        <div class="bg-red-100 text-red-500 p-3 rounded-full">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Utilisateurs -->
+    <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="text-gray-500 text-sm">Utilisateurs</p>
+          <h2 class="text-2xl font-bold text-gray-800">{{ totalUsers }}</h2>
+        </div>
+        <div class="bg-red-100 text-red-500 p-3 rounded-full">
+          <i class="fas fa-users"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Articles -->
+    <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="text-gray-500 text-sm">Articles publiés</p>
+          <h2 class="text-2xl font-bold text-gray-800">{{ totalArticles }}</h2>
+        </div>
+        <div class="bg-red-100 text-red-500 p-3 rounded-full">
+          <i class="fas fa-box"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commandes aujourd’hui -->
+    <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="text-gray-500 text-sm">Commandes aujourd’hui</p>
+          <h2 class="text-2xl font-bold text-gray-800">{{ commandesToday }}</h2>
+        </div>
+        <div class="bg-red-100 text-red-500 p-3 rounded-full">
+          <i class="fas fa-clock"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION BAS -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+    <!-- NOTIFICATIONS -->
+    <div class="lg:col-span-2 bg-white rounded-2xl shadow p-6">
+
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-semibold text-gray-800">Notifications récentes</h2>
+        <span class="text-sm text-red-500 cursor-pointer hover:underline">Voir tout</span>
+      </div>
+
+      <div class="space-y-4">
+
+        <div *ngFor="let notif of notifications" 
+             class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition">
+
+          <div class="bg-red-100 text-red-500 p-3 rounded-full">
+            <i class="fas fa-bell"></i>
+          </div>
+
+          <div class="flex-1">
+            <p class="text-gray-800 font-medium">
+              Nouvelle commande de <span class="font-bold">{{ notif.nom }}</span>
+            </p>
+            <p class="text-gray-500 text-sm"><i class="fa fa-phone"></i> {{ notif.telephone }}</p>
+            <p class="text-gray-400 text-xs mt-1">{{ notif.time }}</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ACTIVITÉ RAPIDE -->
+    <div class="bg-white rounded-2xl shadow p-6">
+
+      <h2 class="text-lg font-semibold text-gray-800 mb-4">Actions rapides</h2>
+
+      <div class="space-y-3">
+
+        <button class="w-full bg-red-500 text-white py-2 rounded-xl hover:bg-red-600 transition">
+          + Ajouter un article
+        </button>
+
+        <button class="w-full border border-red-500 text-red-500 py-2 rounded-xl hover:bg-red-50 transition">
+          Voir les commandes
+        </button>
+
+        <button class="w-full border border-gray-300 text-gray-700 py-2 rounded-xl hover:bg-gray-100 transition">
+          Messages clients
+        </button>
+
+      </div>
+
+      <!-- MINI STATS -->
+      <div class="mt-6">
+        <p class="text-sm text-gray-500">Performance</p>
+        <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+          <div class="bg-red-500 h-2 rounded-full" style="width: 70%"></div>
+        </div>
+        <p class="text-xs text-gray-400 mt-1">70% des objectifs atteints</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

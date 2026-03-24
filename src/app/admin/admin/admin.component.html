@@ -1,1 +1,116 @@
-<p>admin works!</p>
+<div class="flex h-screen bg-gray-100">
+
+  <!-- SIDEBAR -->
+  <aside class="w-64 bg-white shadow-lg hidden md:flex flex-col">
+
+    <!-- LOGO -->
+    <div class="h-20 flex items-center justify-center border-b">
+      <h1 class="text-2xl font-bold text-red-500">KOOMERCE</h1>
+    </div>
+
+    <!-- MENU -->
+    <nav class="flex-1 px-4 py-6 space-y-2">
+
+      <!-- Dashboard -->
+      <a routerLink="/admin/dashboard"
+         class="flex items-center gap-3 text-decoration-none px-4 py-3 rounded-xl hover:bg-red-50 text-gray-700 hover:text-red-500 transition">
+        <i class="fas fa-home"></i>
+        <span>Dashboard</span>
+      </a>
+
+      <!-- Ajouter article -->
+      <a routerLink="/admin/publier"
+         class="flex items-center text-decoration-none  gap-3 px-4 py-3 rounded-xl hover:bg-red-50 text-gray-700 hover:text-red-500 transition">
+        <i class="fas fa-plus-circle"></i>
+        <span>Ajouter un article</span>
+      </a>
+
+       <!-- Commandes -->
+      <a routerLink="/admin/gestion"
+         class="flex items-center text-decoration-none  gap-3 px-4 py-3 rounded-xl hover:bg-red-50 text-gray-700 hover:text-red-500 transition">
+        <i class="fas fa-image"></i>
+        <span>Gestion article</span>
+      </a>
+
+      <!-- Commandes -->
+      <a routerLink="/admin/commande"
+         class="flex items-center text-decoration-none  gap-3 px-4 py-3 rounded-xl hover:bg-red-50 text-gray-700 hover:text-red-500 transition">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Commandes</span>
+      </a>
+
+      <!-- Messages -->
+      <a routerLink="/admin/messages"
+         class="flex items-center text-decoration-none  gap-3 px-4 py-3 rounded-xl hover:bg-red-50 text-gray-700 hover:text-red-500 transition">
+        <i class="fas fa-envelope"></i>
+        <span>Messages</span>
+      </a>
+
+      <!-- Publicité -->
+      <a routerLink="/admin/publicite"
+         class="flex items-center text-decoration-none  gap-3 px-4 py-3 rounded-xl hover:bg-red-50 text-gray-700 hover:text-red-500 transition">
+        <i class="fas fa-bullhorn"></i>
+        <span>Publier publicité</span>
+      </a>
+
+    </nav>
+
+    <!-- FOOTER -->
+    <div class="p-4 border-t">
+      <button class="w-full bg-red-500 text-white py-2 rounded-xl hover:bg-red-600 transition">
+        Déconnexion
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- MOBILE HEADER -->
+  <div class="md:hidden fixed top-0 left-0 right-0 bg-white shadow flex items-center justify-between px-4 h-16 z-50">
+    <h1 class="text-lg font-bold text-red-500">KOOMERCE</h1>
+    <button (click)="toggleSidebar()" class="text-gray-700">
+      <i class="fas fa-bars text-xl"></i>
+    </button>
+  </div>
+
+  <!-- MOBILE SIDEBAR -->
+  <div *ngIf="isOpen"
+       class="fixed inset-0 bg-black bg-opacity-50 z-40"
+       (click)="toggleSidebar()"></div>
+
+  <aside *ngIf="isOpen"
+         class="fixed top-0 left-0 w-64 h-full bg-white z-50 shadow-lg p-4">
+
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-xl font-bold text-red-500">KOOMERCE</h1>
+      <button (click)="toggleSidebar()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <nav class="space-y-3">
+      <a routerLink="/admin/dashboard" (click)="toggleSidebar()" class="block text-black text-decoration-none">Dashboard</a>
+      <a routerLink="/admin/publier" (click)="toggleSidebar()" class="block text-black text-decoration-none">Ajouter un article</a>
+      <a routerLink="/admin/gestion" (click)="toggleSidebar()" class="block text-black text-decoration-none">Gestion</a>
+      <a routerLink="/admin/commande" (click)="toggleSidebar()" class="block text-black text-decoration-none">Commandes</a>
+     <a routerLink="/admin/messages" (click)="toggleSidebar()" class="block text-black text-decoration-none">Messages</a>
+      <a routerLink="/admin/publicite" (click)="toggleSidebar()" class="block text-black text-decoration-none">Publicité</a>
+    </nav>
+
+  </aside>
+
+  <!-- CONTENU -->
+  <div class="flex-1 flex flex-col">
+
+    <!-- HEADER -->
+    <header class="hidden md:flex h-20 bg-white shadow items-center justify-between px-6">
+      <h2 class="text-xl font-semibold text-gray-700">Dashboard Admin</h2>
+    </header>
+
+    <!-- ROUTER OUTLET -->
+    <main class="flex-1 p-6 mt-16 md:mt-0 overflow-y-auto">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+
+</div>

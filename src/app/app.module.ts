@@ -15,6 +15,10 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AuthComponent } from './admin/auth/auth.component';
 import { ProduitsComponent } from './client/produits/produits.component';
 import { PanierComponent } from './client/panier/panier.component';
+import { PublierComponent } from './admin/publier/publier.component';
+import { GestionComponent } from './admin/gestion/gestion.component';
+import { FormsModule } from '@angular/forms';
+import { CommandeComponent } from './admin/commande/commande.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +34,15 @@ import { PanierComponent } from './client/panier/panier.component';
     DashboardComponent,
     AuthComponent,
     ProduitsComponent,
-    PanierComponent
+    PanierComponent,
+    PublierComponent,
+    GestionComponent,
+    CommandeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

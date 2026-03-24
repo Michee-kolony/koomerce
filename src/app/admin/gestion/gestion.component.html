@@ -1,0 +1,48 @@
+<div class="p-6 space-y-6">
+
+  <!-- BARRE DE RECHERCHE -->
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">Gestion des Articles</h1>
+    <input type="text"
+           [(ngModel)]="searchTerm"
+           placeholder="Rechercher un article..."
+           class="border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-red-500 focus:outline-none w-full max-w-xs"/>
+  </div>
+
+  <!-- LISTE DES ARTICLES -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <div *ngFor="let article of filteredArticles()" class="bg-white shadow rounded-2xl p-4 flex flex-col">
+
+      <!-- SPLIDE SLIDER -->
+      <div class="splide mb-4" [id]="'splide-' + article.id">
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li *ngFor="let img of article.images" class="splide__slide">
+              <img [src]="img" alt="Image article" class="w-full h-48 object-cover rounded-xl"/>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- INFO ARTICLE -->
+      <div class="flex-1 flex flex-col justify-between">
+        <h2 class="text-lg font-semibold text-gray-800">{{ article.titre }}</h2>
+        <p class="text-red-500 font-bold mt-1">{{ article.prix | currency:'USD' }}</p>
+
+        <!-- BOUTONS -->
+        <div class="flex justify-between mt-4">
+          <button class="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600 transition">
+            Modifier
+          </button>
+          <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-xl hover:bg-gray-300 transition">
+            Supprimer
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

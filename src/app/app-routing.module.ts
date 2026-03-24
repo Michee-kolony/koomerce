@@ -10,6 +10,9 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AuthComponent } from './admin/auth/auth.component';
 import { ProduitsComponent } from './client/produits/produits.component';
 import { PanierComponent } from './client/panier/panier.component';
+import { PublierComponent } from './admin/publier/publier.component';
+import { GestionComponent } from './admin/gestion/gestion.component';
+import { CommandeComponent } from './admin/commande/commande.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/koomerce', pathMatch: 'full'},
@@ -29,7 +32,10 @@ const routes: Routes = [
   {path:'admin', component: AdminComponent,
     children:[
       {path:'', redirectTo: 'dashboard', pathMatch:'full'},
-      {path:'dashboard', component: DashboardComponent}
+      {path:'dashboard', component: DashboardComponent},
+      {path:'publier', component: PublierComponent},
+      {path:'gestion', component: GestionComponent},
+      {path:'commande', component: CommandeComponent}
     ]
   }
 

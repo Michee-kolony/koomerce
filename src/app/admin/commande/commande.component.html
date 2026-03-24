@@ -1,0 +1,41 @@
+<div class="p-6 space-y-6">
+
+  <!-- BARRE DE RECHERCHE -->
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">Commandes</h1>
+    <input type="text"
+           [(ngModel)]="searchTerm"
+           placeholder="Rechercher une commande..."
+           class="border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-red-500 focus:outline-none w-full max-w-xs"/>
+  </div>
+
+  <!-- LISTE DES COMMANDES -->
+  <div class="space-y-4">
+    <div *ngFor="let commande of filteredCommandes()"
+         class="flex flex-col sm:flex-row justify-between items-center bg-white shadow rounded-xl p-4 w-full">
+
+      <!-- IMAGE PRODUIT -->
+      <div class="flex-shrink-0">
+        <img [src]="commande.image" alt="{{commande.produit}}" class="w-32 h-32 object-cover rounded-xl"/>
+      </div>
+
+      <!-- INFOS COMMANDE -->
+      <div class="flex-1 flex flex-col sm:flex-row justify-between items-start sm:items-center ml-0 sm:ml-6 mt-4 sm:mt-0 w-full">
+        <div class="flex-1 space-y-1">
+          <h2 class="text-lg font-semibold text-gray-800">{{ commande.produit }}</h2>
+          <p class="text-red-500 font-bold">${{ commande.prix }}</p>
+          <p><span class="font-semibold">Client:</span> {{ commande.client }}</p>
+          <p><span class="font-semibold">Téléphone:</span> {{ commande.telephone }}</p>
+          <p><span class="font-semibold">Adresse:</span> {{ commande.adresse }}</p>
+        </div>
+
+        <!-- STATUT -->
+        <div class="mt-4 sm:mt-0">
+          <span *ngIf="commande.status === 'Livrée'" class="px-4 py-2 bg-green-500 text-white rounded-xl">Livrée</span>
+          <span *ngIf="commande.status === 'Non Livrée'" class="px-4 py-2 bg-yellow-500 text-white rounded-xl">Non Livrée</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
