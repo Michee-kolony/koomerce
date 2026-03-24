@@ -131,83 +131,59 @@
 
 
 <!-- Overlay recherche -->
-<div *ngIf="search" class="fixed bg-black/50 backdrop-blur-xl top-0 bottom-0 left-0 right-0 z-50 overflow-auto">
+<div *ngIf="search" class="fixed bg-black/60 backdrop-blur-xl top-0 bottom-0 left-0 right-0 z-50 overflow-auto">
 
-      <!-- Bouton fermer -->
-    <button (click)="launchsearch()" type="button" 
-            class="absolute top-2 right-6 text-white text-2xl font-bold hover:text-red-500 transition"
-            (click)="search = false">
-      &times;
-    </button>
+  <!-- Bouton fermer -->
+  <button (click)="search = false"
+    class="absolute top-4 right-6 text-white text-3xl font-light hover:text-red-500 transition">
+    &times;
+  </button>
 
-  <!-- Formulaire de recherche -->
-  <form class="mt-10 container mx-auto px-4 relative">
-    <!-- Barre de recherche -->
+  <!-- Barre de recherche -->
+  <form class="mt-12 container mx-auto px-4">
     <div class="flex justify-center">
       <div class="relative w-full max-w-xl">
         <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"></i>
         <input 
           type="text"
-          placeholder="Rechercher un article..."
+          placeholder="Rechercher un produit..."
           class="w-full pl-12 pr-4 py-3 rounded-full bg-white/10 backdrop-blur-md text-white 
                  border border-white/20 placeholder-gray-300 
-                 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent
-                 transition duration-300"
+                 focus:outline-none focus:ring-2 focus:ring-red-500 transition"
         />
       </div>
     </div>
-
   </form>
 
-  <!-- Résultats / Cards -->
-  <div class="container mx-auto px-4 mt-10 grid grid-cols-2 sm:grid-cols-2 gap-6 pb-10">
+  <!-- Résultats -->
+  <div class="container mx-auto px-4 mt-10 grid grid-cols-2 gap-4 pb-10">
 
-    <!-- Card Article 1 -->
-    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition transform flex flex-col">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsI5HnmYv-U67LI2BYcJzzPuv2riCfG94jLQ&s" alt="Article 1" class="w-full h-48 object-cover">
-      <div class="p-4 flex flex-col flex-1">
-        <h3 class="font-semibold text-gray-800">Article 1</h3>
-        <p class="text-gray-500 mt-1 mb-4">$49.99</p>
-        <button class="mt-auto bg-red-500 text-white font-semibold py-2 px-4 rounded-lg transition">
-          Commander
-        </button>
-      </div>
-    </div>
+    <div *ngFor="let produit of produits"
+         class="relative rounded-2xl overflow-hidden group cursor-pointer">
 
-    <!-- Card Article 2 -->
-    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition transform flex flex-col">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsI5HnmYv-U67LI2BYcJzzPuv2riCfG94jLQ&s" alt="Article 2" class="w-full h-48 object-cover">
-      <div class="p-4 flex flex-col flex-1">
-        <h3 class="font-semibold text-gray-800">Article 2</h3>
-        <p class="text-gray-500 mt-1 mb-4">$29.99</p>
-        <button class="mt-auto bg-red-500 text-white font-semibold py-2 px-4 rounded-lg transition">
-          Commander
-        </button>
-      </div>
-    </div>
+      <!-- IMAGE FULL -->
+      <img [src]="produit.image"
+           class="w-full h-64 object-cover transition duration-500 group-hover:scale-110" />
 
-    <!-- Card Article 3 -->
-    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition transform flex flex-col">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsI5HnmYv-U67LI2BYcJzzPuv2riCfG94jLQ&s" alt="Article 3" class="w-full h-48 object-cover">
-      <div class="p-4 flex flex-col flex-1">
-        <h3 class="font-semibold text-gray-800">Article 3</h3>
-        <p class="text-gray-500 mt-1 mb-4">$19.99</p>
-        <button class="mt-auto bg-red-500 text-white font-semibold py-2 px-4 rounded-lg transition">
-          Commander
-        </button>
-      </div>
-    </div>
+      <!-- OVERLAY GRADIENT -->
+      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
 
-    <!-- Card Article 4 -->
-    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition transform flex flex-col">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsI5HnmYv-U67LI2BYcJzzPuv2riCfG94jLQ&s" alt="Article 4" class="w-full h-48 object-cover">
-      <div class="p-4 flex flex-col flex-1">
-        <h3 class="font-semibold text-gray-800">Article 4</h3>
-        <p class="text-gray-500 mt-1 mb-4">$99.99</p>
-        <button class="mt-auto bg-red-500 text-white font-semibold py-2 px-4 rounded-lg transition">
-          Commander
-        </button>
+      <!-- INFOS -->
+      <div class="absolute bottom-3 left-3 right-3 text-white">
+        <h3 class="text-sm font-semibold line-clamp-2">
+          {{ produit.nom }}
+        </h3>
+
+        <div class="flex items-center gap-2 mt-1">
+          <span class="font-bold text-red-400">
+            {{ produit.prix }}$
+          </span>
+          <span *ngIf="produit.ancienPrix" class="text-xs line-through text-gray-300">
+            {{ produit.ancienPrix }}$
+          </span>
+        </div>
       </div>
+
     </div>
 
   </div>
