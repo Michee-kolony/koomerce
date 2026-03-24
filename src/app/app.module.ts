@@ -14,6 +14,7 @@ import { AdminComponent } from './admin/admin/admin.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AuthComponent } from './admin/auth/auth.component';
 import { ProduitsComponent } from './client/produits/produits.component';
+import { PanierComponent } from './client/panier/panier.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProduitsComponent } from './client/produits/produits.component';
     AdminComponent,
     DashboardComponent,
     AuthComponent,
-    ProduitsComponent
+    ProduitsComponent,
+    PanierComponent
   ],
   imports: [
     BrowserModule,

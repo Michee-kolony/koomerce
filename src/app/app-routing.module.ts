@@ -9,6 +9,7 @@ import { AdminComponent } from './admin/admin/admin.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AuthComponent } from './admin/auth/auth.component';
 import { ProduitsComponent } from './client/produits/produits.component';
+import { PanierComponent } from './client/panier/panier.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/koomerce', pathMatch: 'full'},
@@ -19,7 +20,8 @@ const routes: Routes = [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path:'home', component: HomeComponent},
       {path:'details', component: DetailsComponent},
-      {path: 'produits', component: ProduitsComponent}
+      {path: 'produits', component: ProduitsComponent},
+      {path:'panier', component: PanierComponent}
     ]
 
   },

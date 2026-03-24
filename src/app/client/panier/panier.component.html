@@ -1,0 +1,103 @@
+<section class="bg-gray-50 min-h-screen py-32 px-4 md:px-10">
+
+  <div class="max-w-6xl mx-auto">
+
+    <!-- TITRE -->
+    <h1 class="text-3xl md:text-4xl font-bold mb-8 text-gray-800">
+      🛒 Mon Panier
+    </h1>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+
+      <!-- LISTE PRODUITS -->
+      <div class="lg:col-span-2 space-y-6">
+
+        <div *ngFor="let produit of produits"
+             class="bg-white rounded-2xl shadow-md p-4 flex flex-col md:flex-row items-center gap-4">
+
+          <!-- IMAGE -->
+          <img [src]="produit.image"
+               class="w-28 h-28 object-cover rounded-xl"
+               alt="produit">
+
+          <!-- INFOS -->
+          <div class="flex-1 w-full">
+            <h2 class="font-semibold text-lg text-gray-800">
+              {{ produit.nom }}
+            </h2>
+
+            <p class="text-red-500 font-bold mt-2">
+              {{ produit.prix }} $
+            </p>
+
+            <!-- QUANTITE -->
+            <div class="flex items-center mt-4 gap-3">
+
+              <button (click)="diminuerQuantite(produit)"
+                      class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">
+                -
+              </button>
+
+              <span class="font-semibold">
+                {{ produit.quantite }}
+              </span>
+
+              <button (click)="augmenterQuantite(produit)"
+                      class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">
+                +
+              </button>
+
+            </div>
+          </div>
+
+          <!-- TOTAL PRODUIT -->
+          <div class="text-right">
+            <p class="font-bold text-gray-800">
+              {{ produit.prix * produit.quantite }} $
+            </p>
+
+            <button (click)="supprimerProduit(produit.id)"
+                    class="text-red-500 text-sm mt-2 hover:underline">
+              Supprimer
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- RÉCAPITULATIF -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 h-fit sticky top-10">
+
+        <h2 class="text-xl font-bold mb-6">
+          Résumé
+        </h2>
+
+        <div class="flex justify-between mb-4">
+          <span>Sous-total</span>
+          <span>{{ getTotal() }} $</span>
+        </div>
+
+        <div class="flex justify-between mb-4">
+          <span>Livraison</span>
+          <span class="text-green-500">Gratuite</span>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="flex justify-between text-lg font-bold">
+          <span>Total</span>
+          <span class="text-red-500">{{ getTotal() }} $</span>
+        </div>
+
+        <button class="w-full mt-6 bg-red-500 hover:bg-red-600 text-white py-3 rounded-xl font-semibold transition">
+          Passer la commande
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
