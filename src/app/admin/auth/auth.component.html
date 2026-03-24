@@ -1,0 +1,104 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-red-100 p-4">
+  <div class="bg-white shadow-2xl rounded-3xl flex flex-col md:flex-row w-full max-w-5xl overflow-hidden transition-all duration-300 hover:shadow-3xl">
+    
+    <!-- Section illustration avec effet glassmorphism -->
+    <div class="hidden md:block md:w-1/2 bg-gradient-to-br from-red-600 to-red-700 relative overflow-hidden">
+      <div class="absolute inset-0 bg-black opacity-20"></div>
+      <img src="images/1 - Copie-Photoroom.png" 
+           alt="Admin Illustration" 
+           class="h-full w-full object-cover mix-blend-overlay scale-110 transition-transform duration-700 hover:scale-105">
+      
+      <!-- Overlay avec dégradé et contenu -->
+      <div class="absolute inset-0 bg-gradient-to-t from-red-900/80 via-red-700/40 to-transparent flex flex-col items-center justify-center p-8">
+        <div class="text-center transform transition-all duration-500 hover:scale-105">
+          <div class="mb-4 flex justify-center">
+            <div class="bg-white/20 backdrop-blur-sm rounded-full p-3">
+              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+              </svg>
+            </div>
+          </div>
+          <h2 class="text-white text-4xl font-bold mb-3 tracking-tight">Espace Admin</h2>
+          <p class="text-white/90 text-lg font-light">Accès sécurisé réservé</p>
+          <div class="mt-6 h-1 w-20 bg-white/50 rounded-full mx-auto"></div>
+        </div>
+      </div>
+      
+      <!-- Éléments décoratifs -->
+      <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-16 -mt-16"></div>
+      <div class="absolute bottom-0 left-0 w-40 h-40 bg-white/10 rounded-full blur-2xl -ml-20 -mb-20"></div>
+    </div>
+
+    <!-- Formulaire modernisé -->
+    <div class="w-full md:w-1/2 p-8 md:p-10 bg-white">
+      <div class="max-w-sm mx-auto">
+        <!-- Header du formulaire -->
+        <div class="text-center mb-8">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-red-50 rounded-2xl mb-4">
+            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-800 mb-2">Bienvenue</h2>
+          <p class="text-gray-500 text-sm">Connectez-vous à votre espace administrateur</p>
+        </div>
+        
+        <form class="space-y-5">
+          <!-- Champ Email avec icône -->
+          <div class="group">
+            <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Adresse email</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg class="h-5 w-5 text-gray-400 group-focus-within:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path>
+                </svg>
+              </div>
+              <input type="email" id="email" name="email" placeholder="admin@entreprise.com" 
+                     class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-all duration-300 bg-gray-50 focus:bg-white">
+            </div>
+          </div>
+
+          <!-- Champ Mot de passe avec icône -->
+          <div class="group">
+            <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">Mot de passe</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg class="h-5 w-5 text-gray-400 group-focus-within:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6-4h12a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6a2 2 0 012-2zm10-4V8a4 4 0 00-8 0v3h8z"></path>
+                </svg>
+              </div>
+              <input type="password" id="password" name="password" placeholder="••••••••" 
+                     class="w-full pl-10 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-all duration-300 bg-gray-50 focus:bg-white">
+            </div>
+          </div>
+
+          <!-- Bouton connexion avec effet -->
+          <button type="submit" 
+                  class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold py-3.5 rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-red-300">
+            <div class="flex items-center justify-center space-x-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+              </svg>
+              <span>Se connecter</span>
+            </div>
+          </button>
+
+          <!-- Séparateur -->
+          <div class="relative my-6">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-gray-200"></div>
+            </div>
+            <div class="relative flex justify-center text-sm">
+              <span class="px-4 bg-white text-gray-500">Accès sécurisé</span>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="text-center text-xs text-gray-400">
+            <p>© 2024 - Espace administration sécurisé</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
