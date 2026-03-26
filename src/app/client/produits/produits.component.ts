@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-produits',
   templateUrl: './produits.component.html',
   styleUrl: './produits.component.css'
 })
-export class ProduitsComponent {
+export class ProduitsComponent implements OnInit {
 
   produits = [
     {
@@ -65,5 +65,10 @@ export class ProduitsComponent {
       image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083"
     }
   ];
+
+ngOnInit(): void {
+       // Scroll automatique en haut de la page
+   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
 }

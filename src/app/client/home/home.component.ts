@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import Splide from '@splidejs/splide';
 
 @Component({
@@ -6,9 +6,15 @@ import Splide from '@splidejs/splide';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements AfterViewInit {
+export class HomeComponent implements AfterViewInit, OnInit {
 
   search = false;
+
+
+  ngOnInit(): void {
+         // Scroll automatique en haut de la page
+   window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   ngAfterViewInit(): void {
 

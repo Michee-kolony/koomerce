@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 interface Produit {
   id: number;
@@ -13,7 +13,7 @@ interface Produit {
   templateUrl: './panier.component.html',
   styleUrl: './panier.component.css'
 })
-export class PanierComponent {
+export class PanierComponent implements OnInit {
 
   produits: Produit[] = [
     {
@@ -52,6 +52,12 @@ export class PanierComponent {
       image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab'
     }
   ];
+
+
+  ngOnInit(): void {
+         // Scroll automatique en haut de la page
+   window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   getTotal(): number {
     return this.produits.reduce((total, produit) => {
