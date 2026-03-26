@@ -1,1 +1,123 @@
-<p>publier works!</p>
+<div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-md mt-6">
+  <h2 class="text-2xl font-bold text-center mb-6">Ajouter un nouvel article</h2>
+
+  <form (ngSubmit)="submitArticle()" #articleForm="ngForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+    <!-- TITRE -->
+    <div>
+      <label class="block font-semibold mb-1">Titre</label>
+      <input type="text" name="titre" [(ngModel)]="article.titre" required
+             class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    </div>
+
+    <!-- PRIX -->
+    <div>
+      <label class="block font-semibold mb-1">Prix</label>
+      <input type="number" name="prix" [(ngModel)]="article.prix" required
+             class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    </div>
+
+    <!-- REDUCTION -->
+    <div>
+      <label class="block font-semibold mb-1">Réduction (%)</label>
+      <input type="number" name="reduction" [(ngModel)]="article.reduction"
+             class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    </div>
+
+    <!-- CATEGORIE (SELECT) -->
+    <div>
+      <label class="block font-semibold mb-1">Catégorie</label>
+      <select name="categorie" [(ngModel)]="article.categorie" required
+              class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <option value="" disabled selected>Choisir une catégorie</option>
+        <option value="Électronique">Électronique</option>
+        <option value="Vêtements">Vêtements</option>
+        <option value="Maison">Maison</option>
+        <option value="Sports">Sports</option>
+        <option value="Autres">Autres</option>
+      </select>
+    </div>
+
+    <!-- STATUS -->
+    <div>
+      <label class="block font-semibold mb-1">Status</label>
+      <select name="status" [(ngModel)]="article.status" required
+              class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <option value="neuf(ve)">Neuf(ve)</option>
+        <option value="occasion">Occasion</option>
+      </select>
+    </div>
+
+    <!-- DESCRIPTION (full width) -->
+    <div class="md:col-span-2">
+      <label class="block font-semibold mb-1">Description</label>
+      <textarea name="description" [(ngModel)]="article.description" rows="3" required
+                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+    </div>
+
+    <!-- IMAGES (URLs) -->
+    <div>
+      <label class="block font-semibold mb-1">Image 1 (URL)</label>
+      <input type="text" name="image1" [(ngModel)]="article.image1" required
+             class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    </div>
+    <div>
+      <label class="block font-semibold mb-1">Image 2 (URL)</label>
+      <input type="text" name="image2" [(ngModel)]="article.image2" required
+             class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    </div>
+    <div>
+      <label class="block font-semibold mb-1">Image 3 (URL)</label>
+      <input type="text" name="image3" [(ngModel)]="article.image3" required
+             class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    </div>
+
+    <!-- GENRE (SELECT) -->
+    <div>
+      <label class="block font-semibold mb-1">Genre</label>
+      <select name="genre" [(ngModel)]="article.genre"
+              class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <option value="" disabled selected>Choisir un genre</option>
+        <option value="Homme">Homme</option>
+        <option value="Femme">Femme</option>
+        <option value="Mixte">Mixte</option>
+        <option value="Enfant">Enfant</option>
+        <option value="Autres">Autres</option>
+      </select>
+    </div>
+
+    <!-- NOM VENDEUR -->
+    <div>
+      <label class="block font-semibold mb-1">Nom du vendeur</label>
+      <input type="text" name="nomvendeur" [(ngModel)]="article.nomvendeur" required
+             class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    </div>
+
+    <!-- TELEPHONE -->
+    <div>
+      <label class="block font-semibold mb-1">Téléphone du vendeur</label>
+      <input type="text" name="telephonev" [(ngModel)]="article.telephonev" required
+             class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    </div>
+
+    <!-- BOUTON ENVOI (full width) -->
+    <div class="md:col-span-2 flex justify-center mt-4">
+      <button type="submit" [disabled]="loading"
+              class="bg-red-500 text-white font-semibold px-6 py-2 rounded flex items-center">
+        <span *ngIf="loading" class="loader mr-2"></span>
+        {{ loading ? 'Envoi...' : 'Publier l\'article' }}
+      </button>
+    </div>
+
+  </form>
+
+  <!-- MESSAGE DE SUCCESS -->
+  <div *ngIf="successMessage" class="mt-4 p-3 bg-green-100 text-green-800 rounded md:col-span-2">
+    {{ successMessage }}
+  </div>
+
+  <!-- MESSAGE D'ERREUR -->
+  <div *ngIf="errorMessage" class="mt-4 p-3 bg-red-100 text-red-800 rounded md:col-span-2">
+    {{ errorMessage }}
+  </div>
+</div>
