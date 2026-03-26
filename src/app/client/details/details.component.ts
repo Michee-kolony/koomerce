@@ -1,32 +1,70 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import Splide from '@splidejs/splide';
+
+interface Article {
+  _id: string;
+  titre: string;
+  prix: number;
+  description: string;
+  image1: string;
+  image2?: string;
+  image3?: string;
+  status: string;
+  reduction: number;
+  categorie: string;
+  nomvendeur: string;
+  telephonev: string;
+  genre: string;
+  prixReduit: number;
+}
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
-export class DetailsComponent implements AfterViewInit, OnInit {
+export class DetailsComponent implements OnInit, AfterViewInit {
 
-  images: string[] = [
-    'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b',
-    'https://images.unsplash.com/photo-1546868871-7041f2a55e12',
-    'https://images.unsplash.com/photo-1518443895914-2b4d4a1b7c74',
-    'https://images.unsplash.com/photo-1523275335684-37898b6baf30',
-    'https://images.unsplash.com/photo-1585386959984-a41552262c68'
-  ];
-
-  selectedImage: string = this.images[0];
-
+  urlapi = "https://api-koomerce.shop/articles";
+  article: Article | null = null;
+  images: string[] = [];
+  selectedImage: string = '';
   quantity: number = 1;
+  loading: boolean = true;
 
+  constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
-  ngOnInit(): void {
-       // Scroll automatique en haut de la page
-   window.scrollTo({ top: 0, behavior: 'smooth' });
+ ngOnInit(): void {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const id = this.route.snapshot.paramMap.get('id'); // <-- changer ici
+  if (!id) return;
+
+  this.http.get<Article>(`${this.urlapi}/${id}`).subscribe(
+    (data) => {
+      this.article = data;
+      console.log(this.article); // Maintenant ça doit s'afficher
+      this.images = [this.article.image1];
+      if (this.article.image2) this.images.push(this.article.image2);
+      if (this.article.image3) this.images.push(this.article.image3);
+      this.selectedImage = this.images[0];
+      setTimeout(() => this.initSplide(), 100);
+      this.loading = false;
+    },
+    (err) => {
+      console.error('Erreur API:', err);
+      this.loading = false;
+    }
+  );
 }
 
   ngAfterViewInit(): void {
+    // Splide sera initialisé après la récupération des images
+  }
+
+  initSplide() {
     new Splide('#thumbnail-carousel', {
       type: 'loop',
       perPage: 3,
@@ -52,8 +90,6 @@ export class DetailsComponent implements AfterViewInit, OnInit {
   }
 
   decrease() {
-    if (this.quantity > 1) {
-      this.quantity--;
-    }
+    if (this.quantity > 1) this.quantity--;
   }
 }

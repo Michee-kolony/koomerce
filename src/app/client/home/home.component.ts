@@ -17,6 +17,7 @@ interface Article {
   telephonev: string;
   genre: string;
   prixReduit: number;
+  createdAt: string;
 }
 
 @Component({
@@ -41,8 +42,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
     // Récupérer les articles depuis l'API
     this.http.get<Article[]>(this.urlapi).subscribe(
       (data) => {
-        this.articlesFemme = data.filter(a => a.genre.toLowerCase() === 'femme');
-        this.articlesHomme = data.filter(a => a.genre.toLowerCase() === 'homme');
+        // Trier par date de création descendante (les plus récents en premier)
+        const sorted = data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+        // Séparer par genre
+        this.articlesFemme = sorted.filter(a => a.genre.toLowerCase() === 'femme');
+        this.articlesHomme = sorted.filter(a => a.genre.toLowerCase() === 'homme');
 
         // Initialiser les carrousels après rendu
         setTimeout(() => this.initProductCarousels(), 100);
@@ -65,6 +70,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }).mount();
   }
 
+  // Méthode pour ouvrir/fermer la recherche
   launchsearch() {
     this.search = !this.search;
   }

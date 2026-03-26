@@ -26,7 +26,7 @@
     <div class="splide__track">
       <ul class="splide__list">
         <li *ngFor="let article of articlesFemme" class="splide__slide h-full">
-          <div routerLink="/koomerce/details/{{article._id}}" class="bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full min-h-[320px]">
+          <div [routerLink]="['/koomerce/details', article._id]" class="bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full min-h-[320px]">
             <div class="relative">
               <img [src]="article.image1" class="w-full h-40 sm:h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500" />
               <span *ngIf="article.reduction > 0" class="absolute top-3 left-3 bg-red-600 text-white text-xs px-3 py-1 rounded-full shadow">
@@ -66,7 +66,7 @@
     <div class="splide__track">
       <ul class="splide__list">
         <li *ngFor="let article of articlesHomme" class="splide__slide h-full">
-          <div routerLink="/koomerce/details/{{article._id}}" class="bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full min-h-[320px]">
+          <div [routerLink]="['/koomerce/details', article._id]" class="bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full min-h-[320px]">
             <div class="relative">
               <img [src]="article.image1" class="w-full h-40 sm:h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500" />
               <span *ngIf="article.reduction > 0" class="absolute top-3 left-3 bg-red-600 text-white text-xs px-3 py-1 rounded-full shadow">

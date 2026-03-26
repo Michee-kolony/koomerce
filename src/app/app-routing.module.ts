@@ -22,7 +22,7 @@ const routes: Routes = [
     children:[
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path:'home', component: HomeComponent},
-      {path:'details', component: DetailsComponent},
+      {path:'details/:id', component: DetailsComponent},
       {path: 'produits', component: ProduitsComponent},
       {path:'panier', component: PanierComponent}
     ]
