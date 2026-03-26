@@ -6,7 +6,7 @@
     <input type="text"
            [(ngModel)]="searchTerm"
            placeholder="Rechercher un article..."
-           class="border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-red-500 focus:outline-none w-full max-w-xs"/>
+           class="border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-red-500 focus:outline-none w-full max-w-xs transition duration-300 ease-in-out transform focus:scale-105"/>
   </div>
 
   <!-- LISTE DES ARTICLES -->
@@ -15,12 +15,14 @@
     <div *ngFor="let article of filteredArticles()" class="bg-white shadow rounded-2xl p-4 flex flex-col">
 
       <!-- SPLIDE SLIDER -->
-      <div class="splide mb-4" [id]="'splide-' + article.id">
+      <div class="splide mb-4" [id]="'splide-' + article._id">
         <div class="splide__track">
           <ul class="splide__list">
-            <li *ngFor="let img of article.images" class="splide__slide">
-              <img [src]="img" alt="Image article" class="w-full h-48 object-cover rounded-xl"/>
-            </li>
+            <ng-container *ngFor="let img of [article.image1, article.image2, article.image3]">
+              <li *ngIf="img" class="splide__slide">
+                <img [src]="img" alt="Image article" class="w-full h-48 object-cover rounded-xl"/>
+              </li>
+            </ng-container>
           </ul>
         </div>
       </div>
@@ -28,21 +30,62 @@
       <!-- INFO ARTICLE -->
       <div class="flex-1 flex flex-col justify-between">
         <h2 class="text-lg font-semibold text-gray-800">{{ article.titre }}</h2>
-        <p class="text-red-500 font-bold mt-1">{{ article.prix | currency:'USD' }}</p>
+        <p class="text-red-500 font-bold mt-1">
+          {{ article.prixReduit ? (article.prixReduit | currency:'USD') : (article.prix | currency:'USD') }}
+        </p>
 
         <!-- BOUTONS -->
         <div class="flex justify-between mt-4">
-          <button class="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600 transition">
+          <button (click)="editArticle(article)" class="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600 transition">
             Modifier
           </button>
-          <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-xl hover:bg-gray-300 transition">
+          <button (click)="deleteArticle(article._id)" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-xl hover:bg-gray-300 transition">
             Supprimer
           </button>
         </div>
       </div>
 
     </div>
-
   </div>
+</div>
 
+<!-- MODALE DE MODIFICATION -->
+<div *ngIf="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-xl p-6 w-full max-w-lg relative">
+    <h2 class="text-xl font-bold mb-4">Modifier l'article</h2>
+
+    <form (ngSubmit)="saveArticle()" class="space-y-4">
+      <div>
+        <label class="block font-semibold mb-1">Titre</label>
+        <input [(ngModel)]="selectedArticle!.titre" name="titre" class="w-full border px-3 py-2 rounded-xl"/>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1">Prix</label>
+        <input type="number" [(ngModel)]="selectedArticle!.prix" name="prix" class="w-full border px-3 py-2 rounded-xl"/>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1">Reduction (%)</label>
+        <input type="number" [(ngModel)]="selectedArticle!.reduction" name="reduction" class="w-full border px-3 py-2 rounded-xl"/>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1">Description</label>
+        <textarea [(ngModel)]="selectedArticle!.description" name="description" class="w-full border px-3 py-2 rounded-xl"></textarea>
+      </div>
+
+      <div class="flex justify-end space-x-2 mt-4">
+        <button type="button" (click)="closeModal()" class="px-4 py-2 rounded-xl bg-gray-300 hover:bg-gray-400">Annuler</button>
+        <button type="submit" class="px-4 py-2 rounded-xl bg-red-500 text-white hover:bg-red-600">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div *ngIf="loading" class="bg-white/50 fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center">
+  <div>
+    <span class="loader mx-auto text-center"></span>
+  </div>
 </div>
