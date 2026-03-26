@@ -1,278 +1,107 @@
-<!-- Carrousel e-commerce amélioré -->
-<!-- SPLIDE HERO CAROUSEL -->
+<!-- HERO CAROUSEL -->
 <div id="hero-carousel" class="splide w-full">
   <div class="splide__track">
     <ul class="splide__list">
-
-      <!-- SLIDE 1 -->
       <li class="splide__slide relative">
         <img src="images/2.jpg" class="w-full h-[600px] md:h-[700px] object-cover" />
-
         <div class="absolute inset-0 flex flex-col justify-center items-start p-6 md:p-16 bg-gradient-to-r from-black/70 to-transparent">
-            <div class="container">
-               <span class="bg-red-500 text-white px-3 py-1 rounded mb-4">LIMITÉE</span>
-          <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Promotion -50%</h2>
-          <p class="text-white mb-6 max-w-xl">
-            Sur tous les smartphones TechPro. Offre valable jusqu'au 30 juin.
-          </p>
-
-          <div class="flex gap-4">
-            <a  class="border text-decoration-none  border-white text-white px-6 py-3 rounded-lg cursor-pointer">Découvrir</a>
-          </div>
+          <div class="container">
+            <span class="bg-red-500 text-white px-3 py-1 rounded mb-4">LIMITÉE</span>
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Promotion -50%</h2>
+            <p class="text-white mb-6 max-w-xl">Sur tous les smartphones TechPro. Offre valable jusqu'au 30 juin.</p>
+            <div class="flex gap-4">
+              <a class="border border-white text-white px-6 py-3 rounded-lg cursor-pointer">Découvrir</a>
             </div>
+          </div>
         </div>
       </li>
-
-
     </ul>
   </div>
 </div>
 
-<section class="py-10 bg-gray-50">
+<!-- ARTICLES FEMMES -->
+<section class="py-10 bg-gray-50" *ngIf="articlesFemme.length">
   <h3 class="text-2xl font-bold container mx-auto mb-6 px-4">Articles pour femmes</h3>
-
   <div id="image-carousel" class="splide container mx-auto px-4 relative">
-
     <div class="splide__track">
       <ul class="splide__list">
-
-        <!-- PRODUIT 1 -->
-        <li class="splide__slide h-full">
-          <div routerLink="/koomerce/details" class="bg-white rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full min-h-[320px]">
-            
+        <li *ngFor="let article of articlesFemme" class="splide__slide h-full">
+          <div routerLink="/koomerce/details/{{article._id}}" class="bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full min-h-[320px]">
             <div class="relative">
-              <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db"
-                   class="w-full h-40 sm:h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500" />
-              <span class="absolute top-3 left-3 bg-red-600 text-white text-xs px-3 py-1 rounded-full shadow">
-                -20%
+              <img [src]="article.image1" class="w-full h-40 sm:h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500" />
+              <span *ngIf="article.reduction > 0" class="absolute top-3 left-3 bg-red-600 text-white text-xs px-3 py-1 rounded-full shadow">
+                -{{article.reduction}}%
               </span>
             </div>
-
             <div class="p-3 sm:p-4 md:p-5 flex flex-col flex-grow">
-              
               <div class="h-[80px]">
                 <h4 class="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 line-clamp-1 h-[24px] truncate">
-                  Casque Audio Bluetooth
+                  {{article.titre}}
                 </h4>
                 <p class="text-xs sm:text-sm text-gray-500 line-clamp-2 h-[40px]">
-                  Son haute qualité, autonomie longue durée et design moderne.
+                  {{article.description}}
                 </p>
               </div>
-
               <div class="mt-auto">
                 <div class="flex items-center gap-2 mb-2 sm:mb-3">
-                  <span class="text-lg sm:text-xl font-bold text-blue-600">49$</span>
-                  <span class="text-xs sm:text-sm text-gray-400 line-through">60$</span>
+                  <span class="text-lg sm:text-xl font-bold text-red-500">{{article.prixReduit | currency:'USD'}}</span>
+                  <span *ngIf="article.reduction > 0" class="text-xs sm:text-sm text-gray-400 line-through">{{article.prix | currency:'USD'}}</span>
                 </div>
               </div>
-
             </div>
-
           </div>
         </li>
-
-        <!-- PRODUIT 2 -->
-        <li routerLink="/koomerce/details" class="splide__slide h-full">
-          <div class="bg-white rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full min-h-[320px]">
-            
-            <div class="relative">
-              <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"
-                   class="w-full h-40 sm:h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500" />
-              <span class="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded-full shadow">
-                Nouveau
-              </span>
-            </div>
-
-            <div class="p-3 sm:p-4 md:p-5 flex flex-col flex-grow">
-              
-              <div class="h-[80px]">
-                <h4 class="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 line-clamp-1 h-[24px] truncate">
-                  Smartphone Pro X
-                </h4>
-                <p class="text-xs sm:text-sm text-gray-500 line-clamp-2 h-[40px]">
-                  Écran AMOLED, appareil photo haute résolution et grande performance.
-                </p>
-              </div>
-
-              <div class="mt-auto">
-                <div class="flex items-center gap-2 mb-2 sm:mb-3">
-                  <span class="text-lg sm:text-xl font-bold text-green-600">699$</span>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </li>
-
-        <!-- PRODUIT 3 -->
-        <li routerLink="/koomerce/details" class="splide__slide h-full">
-          <div class="bg-white rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full min-h-[320px]">
-            
-            <div class="relative">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsI5HnmYv-U67LI2BYcJzzPuv2riCfG94jLQ&s"
-                   class="w-full h-40 sm:h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500" />
-              <span class="absolute top-3 left-3 bg-yellow-500 text-white text-xs px-3 py-1 rounded-full shadow">
-                Best Seller
-              </span>
-            </div>
-
-            <div class="p-3 sm:p-4 md:p-5 flex flex-col flex-grow">
-              
-              <div class="h-[80px]">
-                <h4 class="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 line-clamp-1 h-[24px] truncate">
-                  Montre Connectée FitPro
-                </h4>
-                <p class="text-xs sm:text-sm text-gray-500 line-clamp-2 h-[40px]">
-                  Suivi santé, notifications et design élégant pour le quotidien.
-                </p>
-              </div>
-
-              <div class="mt-auto">
-                <div class="flex items-center gap-2 mb-2 sm:mb-3">
-                  <span class="text-lg sm:text-xl font-bold text-yellow-600">89$</span>
-                  <span class="text-xs sm:text-sm text-gray-400 line-through">120$</span>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </li>
-
-        <div >
-          <button class="bg-white border px-5 py-3">Voir toutes les articles</button>
-        </div>
-
       </ul>
     </div>
-     <div class="flex justify-center">
-          <button routerLink="/koomerce/produits" class="border px-5 py-3 mt-5 rounded-md">Voir toutes les articles</button>
-        </div>
+    <div class="flex justify-center">
+      <button routerLink="/koomerce/produits" class="border px-5 py-3 mt-5 rounded-md">Voir toutes les articles</button>
+    </div>
   </div>
 </section>
 
-
-<section class="py-10 bg-gray-50">
+<!-- ARTICLES HOMMES -->
+<section class="py-10 bg-gray-50" *ngIf="articlesHomme.length">
   <h3 class="text-2xl font-bold container mx-auto mb-6 px-4">Articles pour Hommes</h3>
-
   <div id="image-carousel2" class="splide container mx-auto px-4 relative">
-
     <div class="splide__track">
       <ul class="splide__list">
-
-        <!-- PRODUIT 1 -->
-        <li class="splide__slide h-full">
-          <div routerLink="/koomerce/details" class="bg-white rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full min-h-[320px]">
-            
+        <li *ngFor="let article of articlesHomme" class="splide__slide h-full">
+          <div routerLink="/koomerce/details/{{article._id}}" class="bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full min-h-[320px]">
             <div class="relative">
-              <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db"
-                   class="w-full h-40 sm:h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500" />
-              <span class="absolute top-3 left-3 bg-red-600 text-white text-xs px-3 py-1 rounded-full shadow">
-                -20%
+              <img [src]="article.image1" class="w-full h-40 sm:h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500" />
+              <span *ngIf="article.reduction > 0" class="absolute top-3 left-3 bg-red-600 text-white text-xs px-3 py-1 rounded-full shadow">
+                -{{article.reduction}}%
               </span>
             </div>
-
             <div class="p-3 sm:p-4 md:p-5 flex flex-col flex-grow">
-              
               <div class="h-[80px]">
                 <h4 class="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 line-clamp-1 h-[24px] truncate">
-                  Casque Audio Bluetooth
+                  {{article.titre}}
                 </h4>
                 <p class="text-xs sm:text-sm text-gray-500 line-clamp-2 h-[40px]">
-                  Son haute qualité, autonomie longue durée et design moderne.
+                  {{article.description}}
                 </p>
               </div>
-
               <div class="mt-auto">
                 <div class="flex items-center gap-2 mb-2 sm:mb-3">
-                  <span class="text-lg sm:text-xl font-bold text-blue-600">49$</span>
-                  <span class="text-xs sm:text-sm text-gray-400 line-through">60$</span>
+                  <span class="text-lg sm:text-xl font-bold text-red-500">{{article.prixReduit | currency:'USD'}}</span>
+                  <span *ngIf="article.reduction > 0" class="text-xs sm:text-sm text-gray-400 line-through">{{article.prix | currency:'USD'}}</span>
                 </div>
               </div>
-
             </div>
-
           </div>
         </li>
-
-        <!-- PRODUIT 2 -->
-        <li class="splide__slide h-full">
-          <div routerLink="/koomerce/details" class="bg-white rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full min-h-[320px]">
-            
-            <div class="relative">
-              <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"
-                   class="w-full h-40 sm:h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500" />
-              <span class="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded-full shadow">
-                Nouveau
-              </span>
-            </div>
-
-            <div class="p-3 sm:p-4 md:p-5 flex flex-col flex-grow">
-              
-              <div class="h-[80px]">
-                <h4 class="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 line-clamp-1 h-[24px] truncate">
-                  Smartphone Pro X
-                </h4>
-                <p class="text-xs sm:text-sm text-gray-500 line-clamp-2 h-[40px]">
-                  Écran AMOLED, appareil photo haute résolution et grande performance.
-                </p>
-              </div>
-
-              <div class="mt-auto">
-                <div class="flex items-center gap-2 mb-2 sm:mb-3">
-                  <span class="text-lg sm:text-xl font-bold text-green-600">699$</span>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </li>
-
-        <!-- PRODUIT 3 -->
-        <li class="splide__slide h-full">
-          <div routerLink="/koomerce/details" class="bg-white rounded-xl sm:rounded-2xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group flex flex-col h-full min-h-[320px]">
-            
-            <div class="relative">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsI5HnmYv-U67LI2BYcJzzPuv2riCfG94jLQ&s"
-                   class="w-full h-40 sm:h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500" />
-              <span class="absolute top-3 left-3 bg-yellow-500 text-white text-xs px-3 py-1 rounded-full shadow">
-                Best Seller
-              </span>
-            </div>
-
-            <div class="p-3 sm:p-4 md:p-5 flex flex-col flex-grow">
-              
-              <div class="h-[80px]">
-                <h4 class="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 line-clamp-1 h-[24px] truncate">
-                  Montre Connectée FitPro
-                </h4>
-                <p class="text-xs sm:text-sm text-gray-500 line-clamp-2 h-[40px]">
-                  Suivi santé, notifications et design élégant pour le quotidien.
-                </p>
-              </div>
-
-              <div class="mt-auto">
-                <div class="flex items-center gap-2 mb-2 sm:mb-3">
-                  <span class="text-lg sm:text-xl font-bold text-yellow-600">89$</span>
-                  <span class="text-xs sm:text-sm text-gray-400 line-through">120$</span>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </li>
-
       </ul>
     </div>
-       <div class="flex justify-center">
-          <button routerLink="/koomerce/produits" class="border px-5 py-3 mt-5 rounded-md">Voir toutes les articles</button>
-        </div>
+    <div class="flex justify-center">
+      <button routerLink="/koomerce/produits" class="border px-5 py-3 mt-5 rounded-md">Voir toutes les articles</button>
+    </div>
   </div>
 </section>
 
 
-
-
+<div *ngIf="loading" class="bg-white/70 fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center">
+  <div>
+    <span class="loader mx-auto text-center"></span>
+  </div>
+</div>
