@@ -19,6 +19,7 @@ import { PublierComponent } from './admin/publier/publier.component';
 import { GestionComponent } from './admin/gestion/gestion.component';
 import { FormsModule } from '@angular/forms';
 import { CommandeComponent } from './admin/commande/commande.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CommandeComponent } from './admin/commande/commande.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
