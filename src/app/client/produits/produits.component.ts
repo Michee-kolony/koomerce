@@ -26,6 +26,7 @@ this.http.get<any[]>(this.url).subscribe({
     this.loading = false;
     // On map pour utiliser les bons champs pour l'affichage
     this.produits = sorted.map(p => ({
+      _id:p._id,
       nom: p.titre,
       prix: p.prixReduit || p.prix,
       ancienPrix: p.prix !== p.prixReduit ? p.prix : null,
