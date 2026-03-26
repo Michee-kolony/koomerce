@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import Splide from '@splidejs/splide';
 
 @Component({
@@ -6,7 +6,7 @@ import Splide from '@splidejs/splide';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
-export class DetailsComponent implements AfterViewInit {
+export class DetailsComponent implements AfterViewInit, OnInit {
 
   images: string[] = [
     'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b',
@@ -19,6 +19,12 @@ export class DetailsComponent implements AfterViewInit {
   selectedImage: string = this.images[0];
 
   quantity: number = 1;
+
+
+  ngOnInit(): void {
+       // Scroll automatique en haut de la page
+   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
   ngAfterViewInit(): void {
     new Splide('#thumbnail-carousel', {
