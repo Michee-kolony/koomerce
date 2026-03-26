@@ -1,44 +1,62 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+interface Produit {
+  _id?: string;
+  titre: string;
+  prix: number;
+  prixReduit?: number;
+  image1: string;
+  image2?: string;
+  image3?: string;
+  categorie: string;
+  genre: string;
+}
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
- 
+  url = "https://api-koomerce.shop/articles"; // ton API
   search = false;
+  filterCategorie = '';
+  searchQuery = '';
+  produits: Produit[] = [];
 
-  produits = [
-  {
-    nom: "Robe élégante",
-    prix: 25,
-    ancienPrix: 40,
-    image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b"
-  },
-  {
-    nom: "T-shirt streetwear",
-    prix: 12,
-    ancienPrix: 20,
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"
-  },
-  {
-    nom: "Sneakers modernes",
-    prix: 35,
-    ancienPrix: 50,
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff"
-  },
-  {
-    nom: "Sac tendance",
-    prix: 18,
-    ancienPrix: 30,
-    image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3"
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.getProduits();
   }
-];
 
+  // Méthode launchSearch comme tu voulais
+  launchsearch(){
+    this.search = !this.search;
+    this.searchQuery = '';
+    this.filterCategorie = '';
+  }
 
-launchsearch(){
-  this.search = !this.search
-}
+  // Récupérer les produits depuis l'API
+  getProduits() {
+    this.http.get<Produit[]>(this.url).subscribe({
+      next: (res) => {
+        this.produits = res;
+      },
+      error: (err) => {
+        console.error("Erreur lors de la récupération des produits :", err);
+      }
+    });
+  }
+
+  // Retourne les produits filtrés
+  get produitsFiltres(): Produit[] {
+    return this.produits.filter(p => {
+      const matchNom = p.titre.toLowerCase().includes(this.searchQuery.toLowerCase());
+      const matchCat = this.filterCategorie ? p.categorie === this.filterCategorie : true;
+      return matchNom && matchCat;
+    });
+  }
 }
