@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Produit {
   id: number;
@@ -15,50 +16,55 @@ interface Produit {
 })
 export class PanierComponent implements OnInit {
 
-  produits: Produit[] = [
-    {
-      id: 1,
-      nom: 'Sneakers Nike',
-      prix: 120,
-      quantite: 1,
-      image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff'
-    },
-    {
-      id: 2,
-      nom: 'Sac à main cuir',
-      prix: 80,
-      quantite: 2,
-      image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3'
-    },
-    {
-      id: 3,
-      nom: 'Montre élégante',
-      prix: 150,
-      quantite: 1,
-      image: 'https://images.unsplash.com/photo-1519741497674-611481863552'
-    },
-    {
-      id: 4,
-      nom: 'Casque audio',
-      prix: 60,
-      quantite: 1,
-      image: 'https://images.unsplash.com/photo-1518441902110-9f0f8a0c89b8'
-    },
-    {
-      id: 5,
-      nom: 'T-shirt tendance',
-      prix: 25,
-      quantite: 3,
-      image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab'
-    }
-  ];
+  produits: Produit[] = [];
 
+  // 🔥 USER
+  user: any = null;
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-         // Scroll automatique en haut de la page
-   window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.loadUser();
+
+    // 👉 charger panier SEULEMENT si connecté
+    if (this.user) {
+      this.loadPanier();
+    }
   }
 
+  // 🔥 LOAD USER
+  loadUser() {
+    const storedUser = localStorage.getItem('user');
+    this.user = storedUser ? JSON.parse(storedUser) : null;
+  }
+
+  // 🔥 SIMULATION PANIER (à remplacer par API plus tard)
+  loadPanier() {
+    this.produits = [
+      {
+        id: 1,
+        nom: 'Sneakers Nike',
+        prix: 120,
+        quantite: 1,
+        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff'
+      },
+      {
+        id: 2,
+        nom: 'Sac à main cuir',
+        prix: 80,
+        quantite: 2,
+        image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3'
+      }
+    ];
+  }
+
+  // 🔥 REDIRECTION LOGIN
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  // 🔥 LOGIQUE PANIER
   getTotal(): number {
     return this.produits.reduce((total, produit) => {
       return total + (produit.prix * produit.quantite);

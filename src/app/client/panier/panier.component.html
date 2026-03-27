@@ -1,4 +1,6 @@
-<section class="bg-gray-50 min-h-screen py-32 px-4 md:px-10">
+<section
+*ngIf="user; else notLogged"
+ class="bg-gray-50 min-h-screen py-32 px-4 md:px-10">
 
   <div class="max-w-6xl mx-auto">
 
@@ -101,3 +103,27 @@
   </div>
 
 </section>
+
+<!-- 🔥 SI PAS CONNECTÉ -->
+<ng-template #notLogged>
+  <div class="min-h-screen flex flex-col items-center justify-center bg-gray-50 text-center px-4">
+
+    <div class="bg-white shadow-xl rounded-2xl p-8 max-w-md w-full">
+
+      <h2 class="text-xl font-bold text-gray-800 mb-4">
+        Accès restreint
+      </h2>
+
+      <p class="text-gray-600 mb-6">
+        Connecte-toi pour voir ton panier et passer commande.
+      </p>
+
+      <button (click)="goToLogin()"
+              class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl font-semibold transition">
+        Se connecter
+      </button>
+
+    </div>
+
+  </div>
+</ng-template>
