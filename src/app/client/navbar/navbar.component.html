@@ -82,10 +82,33 @@
       </div>
 
       
-       <button routerLink="/login" class="px-4 py-2 border text-black font-medium rounded-lg  transition-all duration-300 transform hover:-translate-y-0.5">
-          Connexion
-        </button>
+       <!-- 🔥 SI USER CONNECTÉ -->
+<div *ngIf="user; else notLogged" class="flex items-center space-x-3">
 
+  <!-- Avatar initial -->
+  <div class="w-10 h-10 rounded-full bg-red-500 text-white flex items-center justify-center font-bold shadow">
+    {{ initial }}
+  </div>
+
+  <!-- Nom utilisateur (optionnel) -->
+  <span class="text-sm font-medium text-gray-700 hidden  md:block">
+    {{ user?.nom || user?.name }}
+  </span>
+
+  <!-- logout (optionnel) -->
+  <button (click)="logout()" class="text-xs text-red-500 hover:underline" title="Déconnexion">
+    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+  </button>
+
+</div>
+
+<!-- 🔥 SI PAS CONNECTÉ -->
+<ng-template #notLogged>
+  <button routerLink="/login"
+          class="px-4 py-2 border text-black font-medium rounded-lg transition-all duration-300 transform hover:-translate-y-0.5">
+    Connexion
+  </button>
+</ng-template>
     </div>
   </div>
 

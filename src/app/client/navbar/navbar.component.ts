@@ -20,26 +20,45 @@ interface Produit {
 })
 export class NavbarComponent implements OnInit {
 
-  url = "https://api-koomerce.shop/articles"; // ton API
+  url = "https://api-koomerce.shop/articles";
   search = false;
   filterCategorie = '';
   searchQuery = '';
   produits: Produit[] = [];
 
+  // 👇 USER CONNECTÉ
+  user: any = null;
+  initial: string = '';
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.getProduits();
+    this.loadUser();
   }
 
-  // Méthode launchSearch comme tu voulais
-  launchsearch(){
+  // 🔥 Charger user depuis localStorage
+  loadUser() {
+    const storedUser = localStorage.getItem('user');
+
+    if (storedUser) {
+      this.user = JSON.parse(storedUser);
+
+      // initiale du nom ou email
+      const name = this.user?.nom || this.user?.name || this.user?.email || '';
+      this.initial = name.charAt(0).toUpperCase();
+    } else {
+      this.user = null;
+      this.initial = '';
+    }
+  }
+
+  launchsearch() {
     this.search = !this.search;
     this.searchQuery = '';
     this.filterCategorie = '';
   }
 
-  // Récupérer les produits depuis l'API
   getProduits() {
     this.http.get<Produit[]>(this.url).subscribe({
       next: (res) => {
@@ -51,12 +70,19 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  // Retourne les produits filtrés
   get produitsFiltres(): Produit[] {
     return this.produits.filter(p => {
       const matchNom = p.titre.toLowerCase().includes(this.searchQuery.toLowerCase());
       const matchCat = this.filterCategorie ? p.categorie === this.filterCategorie : true;
       return matchNom && matchCat;
     });
+  }
+
+  // 🔥 logout optionnel
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.user = null;
+    this.initial = '';
   }
 }
