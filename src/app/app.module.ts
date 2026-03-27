@@ -20,6 +20,7 @@ import { GestionComponent } from './admin/gestion/gestion.component';
 import { FormsModule } from '@angular/forms';
 import { CommandeComponent } from './admin/commande/commande.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ForgotPasswordComponent } from './client/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     PanierComponent,
     PublierComponent,
     GestionComponent,
-    CommandeComponent
+    CommandeComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
