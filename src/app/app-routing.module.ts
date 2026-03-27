@@ -14,12 +14,14 @@ import { PublierComponent } from './admin/publier/publier.component';
 import { GestionComponent } from './admin/gestion/gestion.component';
 import { CommandeComponent } from './admin/commande/commande.component';
 import { ForgotPasswordComponent } from './client/forgot-password/forgot-password.component';
+import { ResetpasswordComponent } from './client/resetpassword/resetpassword.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/koomerce', pathMatch: 'full'},
   {path:'login', component: LoginComponent},
   {path:'forgot-password', component: ForgotPasswordComponent},
   {path:'register', component: RegisterComponent},
+ {path:'reset-password/:token', component: ResetpasswordComponent},
   {path:'koomerce', component: KoomerceComponent,
     children:[
       {path: '', redirectTo: 'home', pathMatch: 'full'},

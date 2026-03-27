@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { CommandeComponent } from './admin/commande/commande.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ForgotPasswordComponent } from './client/forgot-password/forgot-password.component';
+import { ResetpasswordComponent } from './client/resetpassword/resetpassword.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ForgotPasswordComponent } from './client/forgot-password/forgot-passwor
     PublierComponent,
     GestionComponent,
     CommandeComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ResetpasswordComponent
   ],
   imports: [
     BrowserModule,

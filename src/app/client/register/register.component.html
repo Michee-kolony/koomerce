@@ -1,132 +1,181 @@
-<div class="min-h-screen flex items-center justify-center px-4 bg-cover bg-center bg-fixed" 
+<div class="min-h-screen flex items-center justify-center px-4 bg-cover bg-center bg-fixed"
      [style.background-image]="'url(images/1.jpg)'">
-  
-  <!-- Overlay pour lisibilité -->
-  
-  <div class="w-full max-w-md bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 space-y-6 border border-white/20 relative z-10">
-    
-    <!-- LOGO BOUTIQUE -->
+
+  <div class="w-full max-w-md bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 space-y-6 border border-white/20">
+
+    <!-- LOGO -->
     <div class="flex justify-center">
-      <div class="w-24 h-24 rounded-full  shadow-lg flex items-center justify-center overflow-hidden border-4 border-white">
-        <!-- Icône boutique par défaut ou logo -->
+      <div class="w-24 h-24 rounded-full shadow-lg flex items-center justify-center overflow-hidden border-4 border-white">
         <img src="images/1 - Copie-Photoroom.png">
       </div>
     </div>
 
-    <!-- Title -->
+    <!-- TITLE -->
     <div class="text-center">
-      <h1 class="text-3xl font-bold text-gray-800">App <span class="text-[#fe312e]">Koomerce</span></h1>
+      <h1 class="text-3xl font-bold text-gray-800">
+        App <span class="text-[#fe312e]">Koomerce</span>
+      </h1>
       <p class="text-gray-600 mt-2">Créer votre compte</p>
     </div>
 
-    <!-- Form -->
-    <form class="space-y-5" (ngSubmit)="onSubmit()">
+    <!-- FORM -->
+    <form class="space-y-4" (ngSubmit)="onSubmit()">
 
-           <!-- Email -->
+      <!-- NOM -->
       <div>
         <label class="block text-sm font-semibold text-gray-700 mb-2">
           <i class="fas fa-user mr-2 text-[#fe312e]"></i>
-          Nom d'utilisateur
+          Nom complet
         </label>
+
         <input
-          type="email"
-          name="email"
-          placeholder="client@exemple.com"
-          class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#fe312e] focus:ring-2 focus:ring-[#fe312e]/20 focus:outline-none transition-all duration-300"
+          [(ngModel)]="nom"
+          name="nom"
+          type="text"
+          class="w-full px-4 py-3 rounded-lg border"
+          placeholder="Votre nom"
           required
         />
       </div>
-      
-      <!-- Email -->
+
+      <!-- EMAIL -->
       <div>
         <label class="block text-sm font-semibold text-gray-700 mb-2">
           <i class="fas fa-envelope mr-2 text-[#fe312e]"></i>
-          Adresse email
+          Email
         </label>
+
         <input
-          type="email"
+          [(ngModel)]="email"
           name="email"
-          placeholder="client@exemple.com"
-          class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#fe312e] focus:ring-2 focus:ring-[#fe312e]/20 focus:outline-none transition-all duration-300"
+          type="email"
+          class="w-full px-4 py-3 rounded-lg border"
+          placeholder="client@email.com"
           required
         />
       </div>
 
-       <!-- Téléphone-->
+      <!-- TELEPHONE -->
       <div>
         <label class="block text-sm font-semibold text-gray-700 mb-2">
           <i class="fas fa-phone mr-2 text-[#fe312e]"></i>
-          Numéro de téléphone
+          Téléphone
         </label>
+
         <input
-          type="email"
-          name="email"
-          placeholder="+243000000"
-          class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#fe312e] focus:ring-2 focus:ring-[#fe312e]/20 focus:outline-none transition-all duration-300"
+          [(ngModel)]="telephone"
+          name="telephone"
+          type="text"
+          class="w-full px-4 py-3 rounded-lg border"
+          placeholder="+243..."
           required
         />
       </div>
 
-       
-      <!-- Password -->
+      <!-- ADRESSE -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">
+          <i class="fas fa-map-marker-alt mr-2 text-[#fe312e]"></i>
+          Adresse
+        </label>
+
+        <input
+          [(ngModel)]="adresse"
+          name="adresse"
+          type="text"
+          class="w-full px-4 py-3 rounded-lg border"
+          placeholder="Votre adresse"
+          required
+        />
+      </div>
+
+      <!-- PASSWORD -->
       <div>
         <label class="block text-sm font-semibold text-gray-700 mb-2">
           <i class="fas fa-lock mr-2 text-[#fe312e]"></i>
           Mot de passe
         </label>
+
         <div class="relative">
+
           <input
+            [(ngModel)]="password"
             name="password"
             [type]="showPassword ? 'text' : 'password'"
-            placeholder="Entrez votre mot de passe"
-            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#fe312e] focus:ring-2 focus:ring-[#fe312e]/20 focus:outline-none transition-all duration-300 pr-12"
+            class="w-full px-4 py-3 rounded-lg border pr-12"
+            placeholder="********"
             required
           />
-          
-          <!-- Eye Icon amélioré -->
-          <button
-            type="button"
-            (click)="togglePassword()"
-            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#fe312e] transition-colors duration-200 p-1"
-            [attr.aria-label]="showPassword ? 'Cacher le mot de passe' : 'Afficher le mot de passe'"
-          >
-            <i *ngIf="!showPassword" class="fa-solid fa-eye text-lg"></i>
-            <i *ngIf="showPassword" class="fa-solid fa-eye-slash text-lg"></i>
+
+          <button type="button"
+                  (click)="togglePassword()"
+                  class="absolute right-3 top-1/2 -translate-y-1/2">
+            <i *ngIf="!showPassword" class="fa fa-eye"></i>
+            <i *ngIf="showPassword" class="fa fa-eye-slash"></i>
           </button>
+
         </div>
       </div>
 
-      <!-- Button amélioré -->
+      <!-- BUTTON -->
       <button
         type="submit"
-        class="w-full bg-gradient-to-r from-[#fe312e] to-red-600 hover:from-red-600 hover:to-[#fe312e] text-white font-bold py-3.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+        class="w-full bg-gradient-to-r from-[#fe312e] to-red-600 text-white font-bold py-3 rounded-lg"
         [disabled]="loading"
       >
-        <span *ngIf="!loading">
-          <i class="fas fa-sign-in-alt mr-2"></i>
-          Se connecter
-        </span>
+        <span *ngIf="!loading">Créer compte</span>
         <span *ngIf="loading">
-          <i class="fas fa-spinner fa-spin mr-2"></i>
-          Connexion...
+          <i class="fas fa-spinner fa-spin"></i> Inscription...
         </span>
       </button>
+
     </form>
 
-    <!-- Register -->
-    <div class="text-center pt-4">
-      <p class="text-gray-600 text-sm">
-         Déja inscrit ?
-        <a routerLink="/login" class="text-[#fe312e] font-bold hover:text-red-700 ml-1 hover:underline transition-colors">
-           Se connecter
-        </a>
-      </p>
-      <p class="text-xs text-gray-500 mt-3">
-        En vous connectant, vous acceptez nos 
-        <a href="#" class="text-[#fe312e] hover:underline">CGU</a> et 
-        <a href="#" class="text-[#fe312e] hover:underline">Politique de confidentialité</a>
-      </p>
+    <!-- LINK LOGIN -->
+    <div class="text-center text-sm">
+      Déjà inscrit ?
+      <a routerLink="/login" class="text-[#fe312e] font-bold">Se connecter</a>
     </div>
+
+  </div>
+</div>
+
+<!-- SUCCESS POPUP -->
+<div *ngIf="showSuccessPopup"
+     class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+
+  <div class="bg-white p-6 rounded-xl text-center w-[90%] max-w-md">
+
+    <i class="fas fa-check-circle text-green-500 text-4xl"></i>
+
+    <p class="font-bold mt-3">{{ successMessage }}</p>
+
+    <p class="text-sm text-gray-500 mt-2">
+      Redirection vers login dans 5 secondes...
+    </p>
+
+    <button (click)="closeSuccess()"
+            class="mt-4 bg-green-600 text-white px-4 py-2 rounded">
+      OK
+    </button>
+
+  </div>
+</div>
+
+<!-- ERROR POPUP -->
+<div *ngIf="showErrorPopup"
+     class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+
+  <div class="bg-white p-6 rounded-xl text-center w-[90%] max-w-md">
+
+    <i class="fas fa-times-circle text-red-500 text-4xl"></i>
+
+    <p class="font-bold mt-3">{{ errorMessage }}</p>
+
+    <button (click)="closeError()"
+            class="mt-4 bg-red-600 text-white px-4 py-2 rounded">
+      Fermer
+    </button>
 
   </div>
 </div>
