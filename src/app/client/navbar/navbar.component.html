@@ -236,7 +236,9 @@
   <!-- Résultats -->
   <div class="container mx-auto px-4 mt-10 pb-10">
     <div class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
-      <div *ngFor="let produit of produitsFiltres"
+      <div *ngFor="let produit of produitsFiltres" 
+            [routerLink]="['/koomerce/details', produit._id]"
+            (click)="launchsearch()"
            class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-md hover:shadow-xl transition duration-300">
 
         <!-- IMAGE FULL -->
