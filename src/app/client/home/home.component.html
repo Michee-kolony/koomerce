@@ -1,20 +1,68 @@
-<!-- HERO CAROUSEL -->
+<!-- ================= HERO ================= -->
 <div id="hero-carousel" class="splide w-full">
   <div class="splide__track">
     <ul class="splide__list">
+
+      <!-- 🔴 SLIDE FIXE (toujours présent pour stabilité Splide) -->
       <li class="splide__slide relative">
-        <img src="images/2.jpg" class="w-full h-[600px] md:h-[700px] object-cover" />
+        <img src="images/mascotte.png" class="w-full h-[600px] md:h-[700px] object-cover" />
+
         <div class="absolute inset-0 flex flex-col justify-center items-start p-6 md:p-16 bg-gradient-to-r from-black/70 to-transparent">
           <div class="container">
-            <span class="bg-red-500 text-white px-3 py-1 rounded mb-4">LIMITÉE</span>
-            <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Promotion -50%</h2>
-            <p class="text-white mb-6 max-w-xl">Sur tous les smartphones TechPro. Offre valable jusqu'au 30 juin.</p>
-            <div class="flex gap-4">
-              <a class="border border-white text-white px-6 text-decoration-none py-3 rounded-lg cursor-pointer">Découvrir</a>
-            </div>
+            <span class="bg-red-500 text-white px-3 py-1 rounded mb-4">
+              LIMITÉE
+            </span>
+
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-4 mt-5">
+              Espace promotion -50%
+            </h2>
+
+            <p class="text-white mb-6 max-w-xl">
+              toutes nos articles en promotion à partir de -50% s'affichent ici, profitez de nos offres exceptionnelles et faites-vous plaisir à prix réduit !
+            </p>
           </div>
         </div>
       </li>
+
+      <!-- 🔥 SLIDES DYNAMIQUES (articles -50%) -->
+      <li class="splide__slide relative" *ngFor="let a of heroArticles">
+
+        <img [src]="a.image1" class="w-full h-[600px] md:h-[700px] object-cover" />
+
+        <div class="absolute inset-0 flex flex-col justify-center items-start p-6 md:p-16 bg-gradient-to-r from-black/70 to-transparent">
+
+          <div class="container">
+
+            <span class="bg-green-500 text-white px-3 py-1 rounded mb-4">
+              -{{ a.reduction }}%
+            </span>
+
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
+              {{ a.titre }}
+            </h2>
+
+            <p class="text-white mb-6 max-w-xl">
+              {{ a.description }}
+            </p>
+
+            <div class="flex gap-4 items-center">
+
+              <span class="text-white text-2xl font-bold">
+                {{ a.prixReduit }}$
+              </span>
+
+              <a [routerLink]="['/koomerce/details', a._id]" class="bg-red-500 text-decoration-none text-white px-6 py-3 rounded-lg cursor-pointer">
+                Acheter
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </li>
+
     </ul>
   </div>
 </div>

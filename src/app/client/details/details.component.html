@@ -62,10 +62,10 @@
 
             <span *ngIf="!addingToCart">Ajouter au panier</span>
 
-            <span *ngIf="addingToCart" class="flex items-center gap-2">
-              <span class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></span>
-              Ajout...
-            </span>
+              <span *ngIf="addingToCart">
+          <i class="fas fa-spinner fa-spin mr-2"></i>
+          Ajout au panier...
+        </span>
 
           </button>
 

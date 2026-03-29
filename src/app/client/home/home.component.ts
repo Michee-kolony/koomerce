@@ -28,37 +28,75 @@ interface Article {
 export class HomeComponent implements OnInit, AfterViewInit {
 
   urlapi = "https://api-koomerce.shop/articles";
+
   search = false;
   loading = true;
 
   articlesFemme: Article[] = [];
   articlesHomme: Article[] = [];
 
+  // 🔥 HERO DATA
+  heroArticles: Article[] = [];
+
+  private heroInitialized = false;
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Récupérer les articles depuis l'API
     this.http.get<Article[]>(this.urlapi).subscribe(
       (data) => {
-        // Trier par date de création descendante (les plus récents en premier)
-        const sorted = data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
-        // Séparer par genre
-        this.articlesFemme = sorted.filter(a => a.genre.toLowerCase() === 'femme');
-        this.articlesHomme = sorted.filter(a => a.genre.toLowerCase() === 'homme');
+        const sorted = data.sort(
+          (a, b) =>
+            new Date(b.createdAt).getTime() -
+            new Date(a.createdAt).getTime()
+        );
 
-        // Initialiser les carrousels après rendu
-        setTimeout(() => this.initProductCarousels(), 100);
+        this.articlesFemme = sorted.filter(
+          a => a.genre.toLowerCase() === 'femme'
+        );
+
+        this.articlesHomme = sorted.filter(
+          a => a.genre.toLowerCase() === 'homme'
+        );
+
+        // 🔥 HERO = produits en réduction 50%
+        this.heroArticles = sorted.filter(
+          a => a.reduction === 50
+        );
+
         this.loading = false;
+
+        // ⚠️ IMPORTANT: attendre DOM Angular
+        setTimeout(() => {
+          this.initHero();
+          this.initProductCarousels();
+        }, 200);
       },
       (err) => console.error('Erreur API:', err)
     );
   }
 
   ngAfterViewInit(): void {
-    // HERO CAROUSEL
+    // ne rien init ici pour éviter conflit Angular + Splide
+  }
+
+  launchsearch() {
+    this.search = !this.search;
+  }
+
+  // ================= HERO SPLIDE =================
+  initHero() {
+
+    if (this.heroInitialized) return;
+    this.heroInitialized = true;
+
+    const el = document.getElementById('hero-carousel');
+
+    if (!el) return;
+
     new Splide('#hero-carousel', {
       type: 'loop',
       autoplay: true,
@@ -70,13 +108,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }).mount();
   }
 
-  // Méthode pour ouvrir/fermer la recherche
-  launchsearch() {
-    this.search = !this.search;
-  }
-
+  // ================= AUTRES CAROUSELS =================
   initProductCarousels() {
-    // Carousel Femmes
+
     if (this.articlesFemme.length) {
       new Splide('#image-carousel', {
         type: 'loop',
@@ -84,7 +118,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
         gap: '1.5rem',
         autoplay: true,
         pauseOnHover: true,
-        focus: 'center',
         pagination: false,
         breakpoints: {
           1024: { perPage: 3 },
@@ -93,7 +126,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }).mount();
     }
 
-    // Carousel Hommes
     if (this.articlesHomme.length) {
       new Splide('#image-carousel2', {
         type: 'loop',
@@ -101,7 +133,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
         gap: '1.5rem',
         autoplay: true,
         pauseOnHover: true,
-        focus: 'center',
         pagination: false,
         breakpoints: {
           1024: { perPage: 3 },
