@@ -98,7 +98,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (!el) return;
 
     new Splide('#hero-carousel', {
-      type: 'loop',
+      type: 'fade',
       autoplay: true,
       interval: 4000,
       pauseOnHover: true,
