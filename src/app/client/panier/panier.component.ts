@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 interface Produit {
-  id: number;
-  nom: string;
-  prix: number;
-  quantite: number;
+  _id: string;
+  userId: string;
+  produitId: string;
+  titre: string;
+  prixReduit: number;
   image: string;
+  quantite: number;
+  nomvendeur: string;
+  telephonev: string;
 }
 
 @Component({
@@ -20,15 +25,22 @@ export class PanierComponent implements OnInit {
 
   // 🔥 USER
   user: any = null;
+  userId: string | null = null;
 
-  constructor(private router: Router) {}
+  // 🔥 API
+  urlpanier = "https://api-koomerce.shop/panier";
+
+  constructor(
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
     this.loadUser();
 
-    // 👉 charger panier SEULEMENT si connecté
-    if (this.user) {
+    if (this.userId) {
       this.loadPanier();
     }
   }
@@ -36,41 +48,46 @@ export class PanierComponent implements OnInit {
   // 🔥 LOAD USER
   loadUser() {
     const storedUser = localStorage.getItem('user');
-    this.user = storedUser ? JSON.parse(storedUser) : null;
+
+    if (storedUser) {
+      this.user = JSON.parse(storedUser);
+      this.userId = this.user?._id || null;
+      console.log("User connecté:", this.user);
+
+      // 🔥 IMPORTANT : charger panier après user
+      this.loadPanier();
+    } else {
+      this.user = null;
+      this.userId = null;
+    }
   }
 
-  // 🔥 SIMULATION PANIER (à remplacer par API plus tard)
+  // 🔥 LOAD PANIER
   loadPanier() {
-    this.produits = [
-      {
-        id: 1,
-        nom: 'Sneakers Nike',
-        prix: 120,
-        quantite: 1,
-        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff'
+    this.http.get<Produit[]>(this.urlpanier).subscribe(
+      (data) => {
+        this.produits = data.filter(p => p.userId === this.userId);
+        console.log("Panier user:", this.produits);
       },
-      {
-        id: 2,
-        nom: 'Sac à main cuir',
-        prix: 80,
-        quantite: 2,
-        image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3'
+      (err) => {
+        console.error("Erreur panier:", err);
       }
-    ];
+    );
   }
 
-  // 🔥 REDIRECTION LOGIN
+  // 🔥 LOGIN REDIRECT
   goToLogin() {
     this.router.navigate(['/login']);
   }
 
-  // 🔥 LOGIQUE PANIER
+  // 🔥 TOTAL
   getTotal(): number {
     return this.produits.reduce((total, produit) => {
-      return total + (produit.prix * produit.quantite);
+      return total + (produit.prixReduit * produit.quantite);
     }, 0);
   }
 
+  // 🔥 QUANTITE
   augmenterQuantite(produit: Produit) {
     produit.quantite++;
   }
@@ -81,7 +98,18 @@ export class PanierComponent implements OnInit {
     }
   }
 
-  supprimerProduit(id: number) {
-    this.produits = this.produits.filter(p => p.id !== id);
+  // 🔥 SUPPRESSION DYNAMIQUE API
+  supprimerProduit(id: string) {
+    this.http.delete(`${this.urlpanier}/${id}`).subscribe(
+      () => {
+        console.log("Produit supprimé:", id);
+
+        // 🔥 mise à jour UI sans reload
+        this.produits = this.produits.filter(p => p._id !== id);
+      },
+      (err) => {
+        console.error("Erreur suppression:", err);
+      }
+    );
   }
 }

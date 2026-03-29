@@ -4,35 +4,30 @@
 
   <div class="max-w-6xl mx-auto">
 
-    <!-- TITRE -->
     <h1 class="text-3xl md:text-4xl font-bold mb-8 text-gray-800">
       🛒 Mon Panier
     </h1>
 
     <div class="grid lg:grid-cols-3 gap-8">
 
-      <!-- LISTE PRODUITS -->
       <div class="lg:col-span-2 space-y-6">
 
         <div *ngFor="let produit of produits"
              class="bg-white rounded-2xl shadow-md p-4 flex flex-col md:flex-row items-center gap-4">
 
-          <!-- IMAGE -->
           <img [src]="produit.image"
                class="w-28 h-28 object-cover rounded-xl"
                alt="produit">
 
-          <!-- INFOS -->
           <div class="flex-1 w-full">
             <h2 class="font-semibold text-lg text-gray-800">
-              {{ produit.nom }}
+              {{ produit.titre }}
             </h2>
 
             <p class="text-red-500 font-bold mt-2">
-              {{ produit.prix }} $
+              {{ produit.prixReduit }} $
             </p>
 
-            <!-- QUANTITE -->
             <div class="flex items-center mt-4 gap-3">
 
               <button (click)="diminuerQuantite(produit)"
@@ -52,13 +47,12 @@
             </div>
           </div>
 
-          <!-- TOTAL PRODUIT -->
           <div class="text-right">
             <p class="font-bold text-gray-800">
-              {{ produit.prix * produit.quantite }} $
+              {{ produit.prixReduit * produit.quantite }} $
             </p>
 
-            <button (click)="supprimerProduit(produit.id)"
+            <button (click)="supprimerProduit(produit._id)"
                     class="text-red-500 text-sm mt-2 hover:underline">
               Supprimer
             </button>
@@ -68,7 +62,6 @@
 
       </div>
 
-      <!-- RÉCAPITULATIF -->
       <div class="bg-white rounded-2xl shadow-lg p-6 h-fit sticky top-10">
 
         <h2 class="text-xl font-bold mb-6">
@@ -104,7 +97,6 @@
 
 </section>
 
-<!-- 🔥 SI PAS CONNECTÉ -->
 <ng-template #notLogged>
   <div class="min-h-screen flex flex-col items-center justify-center bg-gray-50 text-center px-4">
 

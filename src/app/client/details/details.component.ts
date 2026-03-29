@@ -36,24 +36,26 @@ export class DetailsComponent implements OnInit, AfterViewInit {
   quantity: number = 1;
   loading: boolean = true;
 
-  // 🔥 USER
   user: any = null;
   userId: string | null = null;
-  isLoggedIn: boolean = false; // ✅ AJOUT
+  isLoggedIn: boolean = false;
+
+  // 🔥 AJOUT UX
+  addingToCart: boolean = false;
+  showPopup: boolean = false;
+  popupMessage: string = '';
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
   ngOnInit(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // 🔥 RÉCUPÉRATION USER LOCALSTORAGE
     const storedUser = localStorage.getItem("user");
 
     if (storedUser) {
       this.user = JSON.parse(storedUser);
       this.userId = this.user?._id || null;
-      this.isLoggedIn = true; // ✅ AJOUT
-      console.log("User connecté:", this.user);
+      this.isLoggedIn = true;
     } else {
       this.isLoggedIn = false;
     }
@@ -64,8 +66,6 @@ export class DetailsComponent implements OnInit, AfterViewInit {
     this.http.get<Article>(`${this.urlapi}/${id}`).subscribe(
       (data) => {
         this.article = data;
-
-        console.log(this.article);
 
         this.images = [this.article.image1];
         if (this.article.image2) this.images.push(this.article.image2);
@@ -113,5 +113,49 @@ export class DetailsComponent implements OnInit, AfterViewInit {
 
   decrease() {
     if (this.quantity > 1) this.quantity--;
+  }
+
+  // 🔥 AJOUT AU PANIER DYNAMIQUE
+  ajouterAuPanier() {
+
+    if (!this.isLoggedIn || !this.userId || !this.article) {
+      this.showToast("Vous devez être connecté pour ajouter au panier ❌");
+      return;
+    }
+
+    this.addingToCart = true;
+
+    const panier = {
+      userId: this.userId,
+      produitId: this.article._id,
+      titre: this.article.titre,
+      prixReduit: this.article.prixReduit,
+      image: this.article.image1,
+      quantite: this.quantity,
+      nomvendeur: this.article.nomvendeur,
+      telephonev: this.article.telephonev
+    };
+
+    this.http.post(this.urlpanier, panier).subscribe({
+      next: (res) => {
+        this.addingToCart = false;
+        this.showToast("Article ajouté au panier 🛒");
+      },
+      error: (err) => {
+        console.error(err);
+        this.addingToCart = false;
+        this.showToast("Erreur lors de l'ajout ❌");
+      }
+    });
+  }
+
+  // 🔥 POPUP SIMPLE
+  showToast(message: string) {
+    this.popupMessage = message;
+    this.showPopup = true;
+
+    setTimeout(() => {
+      this.showPopup = false;
+    }, 2500);
   }
 }
