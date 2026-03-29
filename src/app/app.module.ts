@@ -22,6 +22,7 @@ import { CommandeComponent } from './admin/commande/commande.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ForgotPasswordComponent } from './client/forgot-password/forgot-password.component';
 import { ResetpasswordComponent } from './client/resetpassword/resetpassword.component';
+import { ProfilComponent } from './client/profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ResetpasswordComponent } from './client/resetpassword/resetpassword.com
     GestionComponent,
     CommandeComponent,
     ForgotPasswordComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,
