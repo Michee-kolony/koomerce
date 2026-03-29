@@ -1,0 +1,79 @@
+<div class="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-32">
+
+  <div class="w-full max-w-xl bg-white rounded-2xl shadow-xl p-8 space-y-6">
+
+    <!-- HEADER -->
+    <div class="text-center">
+      <h2 class="text-2xl font-bold text-gray-800">Supprimer mon compte</h2>
+      <p class="text-gray-500 text-sm mt-2">
+        Nous sommes désolés de vous voir partir. Aidez-nous à améliorer votre expérience.
+      </p>
+    </div>
+
+    <!-- FORM -->
+    <form class="space-y-5">
+
+      <!-- SELECT RAISON -->
+      <div>
+        <label class="text-sm font-medium text-gray-600">
+          Pourquoi souhaitez-vous nous quitter ?
+        </label>
+
+        <select 
+          class="mt-2 w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-red-500 outline-none">
+
+          <option selected disabled>Choisir une raison</option>
+          <option>Les prix sont trop élevés</option>
+          <option>Mauvaise expérience</option>
+          <option>Je n'utilise plus l'application</option>
+          <option>Problèmes techniques</option>
+          <option>Autre</option>
+
+        </select>
+      </div>
+
+      <!-- MESSAGE -->
+      <div>
+        <label class="text-sm font-medium text-gray-600">
+          Expliquez-nous (optionnel)
+        </label>
+
+        <textarea 
+          rows="4"
+          placeholder="Votre avis est important..."
+          class="mt-2 w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-red-500 outline-none">
+        </textarea>
+      </div>
+
+      <!-- CHECK CONFIRM -->
+      <div class="flex items-start gap-2">
+        <input type="checkbox" class="mt-1">
+
+        <p class="text-sm text-gray-600">
+          Je comprends que cette action est 
+          <span class="text-red-600 font-medium">irréversible</span>
+        </p>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="flex gap-3 pt-4">
+
+        <button 
+          type="button"
+          class="flex-1 border border-gray-300 py-3 rounded-lg hover:bg-gray-100 transition">
+          Annuler
+        </button>
+
+        <button 
+          type="submit"
+          class="flex-1 bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition font-medium">
+          Supprimer
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

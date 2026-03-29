@@ -16,6 +16,7 @@ import { CommandeComponent } from './admin/commande/commande.component';
 import { ForgotPasswordComponent } from './client/forgot-password/forgot-password.component';
 import { ResetpasswordComponent } from './client/resetpassword/resetpassword.component';
 import { ProfilComponent } from './client/profil/profil.component';
+import { DeletecountComponent } from './client/deletecount/deletecount.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/koomerce', pathMatch: 'full'},
@@ -30,7 +31,8 @@ const routes: Routes = [
       {path:'details/:id', component: DetailsComponent},
       {path: 'produits', component: ProduitsComponent},
       {path:'panier', component: PanierComponent},
-      {path:'profil', component: ProfilComponent}
+      {path:'profil', component: ProfilComponent},
+      {path:'deletecount', component: DeletecountComponent}
     ]
 
   },

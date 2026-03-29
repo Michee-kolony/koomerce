@@ -23,6 +23,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ForgotPasswordComponent } from './client/forgot-password/forgot-password.component';
 import { ResetpasswordComponent } from './client/resetpassword/resetpassword.component';
 import { ProfilComponent } from './client/profil/profil.component';
+import { DeletecountComponent } from './client/deletecount/deletecount.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ProfilComponent } from './client/profil/profil.component';
     CommandeComponent,
     ForgotPasswordComponent,
     ResetpasswordComponent,
-    ProfilComponent
+    ProfilComponent,
+    DeletecountComponent
   ],
   imports: [
     BrowserModule,
