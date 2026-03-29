@@ -1,49 +1,76 @@
-<div class="min-h-screen bg-gray-100 py-32 px-4 flex justify-center">
+<div class="min-h-screen bg-gray-100 py-32 px-4 flex justify-center relative">
+
+  <!-- POPUP -->
+  <div
+    *ngIf="showPopup"
+    class="fixed top-[18%] right-5 px-6 py-4 rounded-lg shadow-lg text-white transition"
+    [ngClass]="{
+      'bg-green-600': popupType === 'success',
+      'bg-red-600': popupType === 'error'
+    }"
+  >
+    {{ popupMessage }}
+  </div>
+
+  <!-- CARD -->
   <div class="w-full max-w-3xl bg-white rounded-2xl shadow-lg p-8">
 
     <!-- HEADER -->
     <h1 class="text-3xl font-bold text-gray-800 mb-2">
       Contactez-nous
     </h1>
+
     <p class="text-gray-600 mb-8">
-      Vous avez une question, une réclamation ou besoin d’assistance ?  
-      Notre équipe est à votre écoute et vous répondra dans les plus brefs délais.
+      Vous avez une question, une réclamation ou besoin d’assistance ?
+      Notre équipe vous répond rapidement.
     </p>
 
     <!-- FORM -->
-    <form class="space-y-5">
+    <form class="space-y-5" (ngSubmit)="sendMessage()">
 
+      <!-- NOM -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1">Nom complet</label>
+        <label class="block text-gray-700 font-medium mb-1">Nom complet *</label>
         <input
           type="text"
+          [(ngModel)]="nom"
+          name="nom"
           placeholder="Entrez votre nom"
-          class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-500"
         />
       </div>
 
+      <!-- EMAIL -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1">Adresse e-mail</label>
+        <label class="block text-gray-700 font-medium mb-1">Email *</label>
         <input
           type="email"
+          [(ngModel)]="email"
+          name="email"
           placeholder="exemple@mail.com"
-          class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-500"
         />
       </div>
 
+      <!-- TELEPHONE -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1">Numéro de téléphone (optionnel)</label>
+        <label class="block text-gray-700 font-medium mb-1">Téléphone</label>
         <input
           type="tel"
+          [(ngModel)]="telephone"
+          name="telephone"
           placeholder="+243 ..."
-          class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-500"
         />
       </div>
 
+      <!-- SUJET -->
       <div>
         <label class="block text-gray-700 font-medium mb-1">Sujet</label>
         <select
-          class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          [(ngModel)]="sujet"
+          name="sujet"
+          class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-500"
         >
           <option>Question générale</option>
           <option>Problème avec une commande</option>
@@ -52,27 +79,43 @@
         </select>
       </div>
 
+      <!-- MESSAGE -->
       <div>
-        <label class="block text-gray-700 font-medium mb-1">Message</label>
+        <label class="block text-gray-700 font-medium mb-1">Message *</label>
         <textarea
           rows="5"
-          placeholder="Décrivez votre problème ou votre question..."
-          class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          [(ngModel)]="message"
+          name="message"
+          placeholder="Décrivez votre message..."
+          class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-500"
         ></textarea>
       </div>
 
+      <!-- BUTTON -->
       <button
         type="submit"
-        class="w-full bg-red-600 text-white font-semibold py-3 rounded-lg hover:bg-red-700 transition"
+        [disabled]="loading"
+        class="w-full flex justify-center items-center bg-red-600 text-white font-semibold py-3 rounded-lg hover:bg-red-700 transition disabled:opacity-60"
       >
-        Envoyer le message
+
+        <!-- SPINNER -->
+        <svg *ngIf="loading" class="animate-spin h-5 w-5 mr-2 border-2 border-white border-t-transparent rounded-full"></svg>
+
+        <span *ngIf="!loading">Envoyer le message</span>
+       
+              <span *ngIf="loading">
+          <i class="fas fa-spinner fa-spin mr-2"></i>
+          Ajout au panier...
+        </span>
+
+
       </button>
 
     </form>
 
     <!-- INFO -->
     <div class="mt-8 text-sm text-gray-500 text-center">
-      Nous répondons généralement sous 24 à 48 heures.
+      Réponse sous 24 à 48 heures.
     </div>
 
   </div>

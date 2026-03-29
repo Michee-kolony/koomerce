@@ -26,6 +26,7 @@ import { ProfilComponent } from './client/profil/profil.component';
 import { DeletecountComponent } from './client/deletecount/deletecount.component';
 import { ConfidentialiteComponent } from './client/confidentialite/confidentialite.component';
 import { ContactComponent } from './client/contact/contact.component';
+import { MessageComponent } from './admin/message/message.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ContactComponent } from './client/contact/contact.component';
     ProfilComponent,
     DeletecountComponent,
     ConfidentialiteComponent,
-    ContactComponent
+    ContactComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

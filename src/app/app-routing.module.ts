@@ -19,13 +19,14 @@ import { ProfilComponent } from './client/profil/profil.component';
 import { DeletecountComponent } from './client/deletecount/deletecount.component';
 import { ConfidentialiteComponent } from './client/confidentialite/confidentialite.component';
 import { ContactComponent } from './client/contact/contact.component';
+import { MessageComponent } from './admin/message/message.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/koomerce', pathMatch: 'full'},
   {path:'login', component: LoginComponent},
   {path:'forgot-password', component: ForgotPasswordComponent},
   {path:'register', component: RegisterComponent},
- {path:'reset-password/:token', component: ResetpasswordComponent},
+  {path:'reset-password/:token', component: ResetpasswordComponent},
   {path:'koomerce', component: KoomerceComponent,
     children:[
       {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -47,7 +48,8 @@ const routes: Routes = [
       {path:'dashboard', component: DashboardComponent},
       {path:'publier', component: PublierComponent},
       {path:'gestion', component: GestionComponent},
-      {path:'commande', component: CommandeComponent}
+      {path:'commande', component: CommandeComponent},
+      {path:'messages', component: MessageComponent}
     ]
   }
 
