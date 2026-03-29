@@ -10,6 +10,9 @@ export class ProfilComponent implements OnInit {
   user: any = null;
 
   ngOnInit(): void {
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     const userData = localStorage.getItem('user');
 
     if (userData) {
