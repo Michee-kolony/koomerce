@@ -25,6 +25,7 @@ import { ResetpasswordComponent } from './client/resetpassword/resetpassword.com
 import { ProfilComponent } from './client/profil/profil.component';
 import { DeletecountComponent } from './client/deletecount/deletecount.component';
 import { ConfidentialiteComponent } from './client/confidentialite/confidentialite.component';
+import { ContactComponent } from './client/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ConfidentialiteComponent } from './client/confidentialite/confidentiali
     ResetpasswordComponent,
     ProfilComponent,
     DeletecountComponent,
-    ConfidentialiteComponent
+    ConfidentialiteComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,79 @@
+<div class="min-h-screen bg-gray-100 py-32 px-4 flex justify-center">
+  <div class="w-full max-w-3xl bg-white rounded-2xl shadow-lg p-8">
+
+    <!-- HEADER -->
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">
+      Contactez-nous
+    </h1>
+    <p class="text-gray-600 mb-8">
+      Vous avez une question, une réclamation ou besoin d’assistance ?  
+      Notre équipe est à votre écoute et vous répondra dans les plus brefs délais.
+    </p>
+
+    <!-- FORM -->
+    <form class="space-y-5">
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Nom complet</label>
+        <input
+          type="text"
+          placeholder="Entrez votre nom"
+          class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Adresse e-mail</label>
+        <input
+          type="email"
+          placeholder="exemple@mail.com"
+          class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Numéro de téléphone (optionnel)</label>
+        <input
+          type="tel"
+          placeholder="+243 ..."
+          class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Sujet</label>
+        <select
+          class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option>Question générale</option>
+          <option>Problème avec une commande</option>
+          <option>Réclamation</option>
+          <option>Suggestion</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Message</label>
+        <textarea
+          rows="5"
+          placeholder="Décrivez votre problème ou votre question..."
+          class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-red-600 text-white font-semibold py-3 rounded-lg hover:bg-red-700 transition"
+      >
+        Envoyer le message
+      </button>
+
+    </form>
+
+    <!-- INFO -->
+    <div class="mt-8 text-sm text-gray-500 text-center">
+      Nous répondons généralement sous 24 à 48 heures.
+    </div>
+
+  </div>
+</div>

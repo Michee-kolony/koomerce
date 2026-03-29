@@ -18,6 +18,7 @@ import { ResetpasswordComponent } from './client/resetpassword/resetpassword.com
 import { ProfilComponent } from './client/profil/profil.component';
 import { DeletecountComponent } from './client/deletecount/deletecount.component';
 import { ConfidentialiteComponent } from './client/confidentialite/confidentialite.component';
+import { ContactComponent } from './client/contact/contact.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/koomerce', pathMatch: 'full'},
@@ -34,7 +35,8 @@ const routes: Routes = [
       {path:'panier', component: PanierComponent},
       {path:'profil', component: ProfilComponent},
       {path:'deletecount', component: DeletecountComponent},
-      {path:'confidentialite', component: ConfidentialiteComponent}
+      {path:'confidentialite', component: ConfidentialiteComponent},
+      {path:'contact', component: ContactComponent}
     ]
 
   },

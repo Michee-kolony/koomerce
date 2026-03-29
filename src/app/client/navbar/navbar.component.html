@@ -54,7 +54,7 @@
           <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
         </a>
      
-        <a href="#" class="relative group text-decoration-none">
+        <a routerLink="/koomerce/contact" class="relative group text-decoration-none">
           <span class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center space-x-1">
            <!-- Phone Icon -->
   <svg xmlns="http://www.w3.org/2000/svg" 
@@ -86,7 +86,7 @@
 <div *ngIf="user; else notLogged" class="flex items-center space-x-3">
 
   <!-- Avatar initial -->
-  <div routerLink="/koomerce/profil" class="w-10 h-10 rounded-full bg-red-500 text-white flex items-center justify-center font-bold shadow">
+  <div  routerLink="/koomerce/profil" class="w-10 h-10 cursor-pointer rounded-full bg-red-500 text-white flex items-center justify-center font-bold shadow">
     {{ initial }}
   </div>
 
@@ -173,7 +173,7 @@
       <span class="text-xs">Recherche</span>
     </a>
 
-    <a href="#" class="flex flex-col items-center text-decoration-none text-gray-600 hover:text-red-500 transition">
+    <a routerLink="/koomerce/contact" class="flex flex-col items-center text-decoration-none text-gray-600 hover:text-red-500 transition">
 
   <!-- Phone Icon -->
   <svg xmlns="http://www.w3.org/2000/svg" 
