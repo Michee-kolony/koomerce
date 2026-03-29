@@ -28,41 +28,63 @@ interface Article {
 export class DetailsComponent implements OnInit, AfterViewInit {
 
   urlapi = "https://api-koomerce.shop/articles";
+  urlpanier = "https://api-koomerce.shop/panier";
+
   article: Article | null = null;
   images: string[] = [];
   selectedImage: string = '';
   quantity: number = 1;
   loading: boolean = true;
 
+  // 🔥 USER
+  user: any = null;
+  userId: string | null = null;
+  isLoggedIn: boolean = false; // ✅ AJOUT
+
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
- ngOnInit(): void {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  ngOnInit(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  const id = this.route.snapshot.paramMap.get('id'); // <-- changer ici
-  if (!id) return;
+    // 🔥 RÉCUPÉRATION USER LOCALSTORAGE
+    const storedUser = localStorage.getItem("user");
 
-  this.http.get<Article>(`${this.urlapi}/${id}`).subscribe(
-    (data) => {
-      this.article = data;
-      console.log(this.article); // Maintenant ça doit s'afficher
-      this.images = [this.article.image1];
-      if (this.article.image2) this.images.push(this.article.image2);
-      if (this.article.image3) this.images.push(this.article.image3);
-      this.selectedImage = this.images[0];
-      setTimeout(() => this.initSplide(), 100);
-      this.loading = false;
-    },
-    (err) => {
-      console.error('Erreur API:', err);
-      this.loading = false;
+    if (storedUser) {
+      this.user = JSON.parse(storedUser);
+      this.userId = this.user?._id || null;
+      this.isLoggedIn = true; // ✅ AJOUT
+      console.log("User connecté:", this.user);
+    } else {
+      this.isLoggedIn = false;
     }
-  );
-}
 
-  ngAfterViewInit(): void {
-    // Splide sera initialisé après la récupération des images
+    const id = this.route.snapshot.paramMap.get('id');
+    if (!id) return;
+
+    this.http.get<Article>(`${this.urlapi}/${id}`).subscribe(
+      (data) => {
+        this.article = data;
+
+        console.log(this.article);
+
+        this.images = [this.article.image1];
+        if (this.article.image2) this.images.push(this.article.image2);
+        if (this.article.image3) this.images.push(this.article.image3);
+
+        this.selectedImage = this.images[0];
+
+        setTimeout(() => this.initSplide(), 100);
+
+        this.loading = false;
+      },
+      (err) => {
+        console.error('Erreur API:', err);
+        this.loading = false;
+      }
+    );
   }
+
+  ngAfterViewInit(): void {}
 
   initSplide() {
     new Splide('#thumbnail-carousel', {
