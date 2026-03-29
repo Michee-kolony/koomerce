@@ -22,6 +22,7 @@ interface Produit {
 export class PanierComponent implements OnInit {
 
   produits: Produit[] = [];
+  loading  = true;
 
   // 🔥 USER
   user: any = null;
@@ -67,7 +68,7 @@ export class PanierComponent implements OnInit {
     this.http.get<Produit[]>(this.urlpanier).subscribe(
       (data) => {
         this.produits = data.filter(p => p.userId === this.userId);
-        console.log("Panier user:", this.produits);
+        this.loading = false;
       },
       (err) => {
         console.error("Erreur panier:", err);
