@@ -66,25 +66,32 @@ export class MessageComponent implements OnInit {
     );
   }
 
-  // ⏱️ temps relatif
-  getTimeAgo(date: string): string {
-    const now = new Date().getTime();
-    const created = new Date(date).getTime();
+getTimeAgo(date: string): string {
 
-    const diff = now - created;
+  if (!date) return "date inconnue";
 
-    const minutes = Math.floor(diff / 60000);
-    const hours = Math.floor(diff / 3600000);
-    const days = Math.floor(diff / 86400000);
-    const months = Math.floor(days / 30);
+  const created = new Date(date);
+  const now = new Date();
 
-    if (minutes < 1) return "reçu à l'instant";
-    if (minutes < 60) return `il y a ${minutes} min`;
-    if (hours < 24) return `il y a ${hours} h`;
-    if (days < 7) return `il y a ${days} jour(s)`;
-    if (days < 30) return `il y a ${Math.floor(days / 7)} semaine(s)`;
-    return `il y a ${months} mois`;
-  }
+  // 🔥 corrige le décalage UTC → local
+  const diff = now.getTime() - created.getTime();
+
+  if (diff < 0) return "à l'instant"; // sécurité
+
+  const seconds = Math.floor(diff / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (seconds < 10) return "à l'instant";
+  if (minutes < 1) return `il y a ${seconds} sec`;
+  if (minutes < 60) return `il y a ${minutes} min`;
+  if (hours < 24) return `il y a ${hours} h`;
+  if (days === 1) return "Hier";
+  if (days < 7) return `il y a ${days} jours`;
+
+  return created.toLocaleDateString(); // fallback propre
+}
 
   // 🗑️ supprimer message
   deleteMessage(id: string) {

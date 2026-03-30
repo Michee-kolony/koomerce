@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { interval, Subscription } from 'rxjs';
 
 interface Produit {
   _id?: string;
@@ -13,44 +14,98 @@ interface Produit {
   genre: string;
 }
 
+interface Panier {
+  _id?: string;
+  userId: string;
+  produitId: string;
+  titre: string;
+  prixReduit: number;
+  image: string;
+  quantite: number;
+}
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
 
   url = "https://api-koomerce.shop/articles";
+  urlPanier = "https://api-koomerce.shop/panier";
+
   search = false;
   filterCategorie = '';
   searchQuery = '';
   produits: Produit[] = [];
 
-  // 👇 USER CONNECTÉ
+  // 🔥 USER
   user: any = null;
   initial: string = '';
+
+  // 🔥 PANIER
+  panier: Panier[] = [];
+  panierCount: number = 0;
+
+  // 🔥 RXJS
+  panierSubscription!: Subscription;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.getProduits();
     this.loadUser();
+
+    // 🔥 REFRESH AUTO toutes les 3 secondes
+    this.panierSubscription = interval(3000).subscribe(() => {
+      if (this.user) {
+        this.getPanier();
+      }
+    });
   }
 
-  // 🔥 Charger user depuis localStorage
+  ngOnDestroy(): void {
+    if (this.panierSubscription) {
+      this.panierSubscription.unsubscribe();
+    }
+  }
+
+  // 🔥 Charger user
   loadUser() {
     const storedUser = localStorage.getItem('user');
 
     if (storedUser) {
       this.user = JSON.parse(storedUser);
 
-      // initiale du nom ou email
       const name = this.user?.nom || this.user?.name || this.user?.email || '';
       this.initial = name.charAt(0).toUpperCase();
+
+      // 🔥 première charge panier
+      this.getPanier();
     } else {
       this.user = null;
       this.initial = '';
+      this.panierCount = 0;
     }
+  }
+
+  // 🔥 GET PANIER
+  getPanier() {
+    this.http.get<Panier[]>(this.urlPanier).subscribe({
+      next: (res) => {
+        this.panier = res;
+
+        const userPanier = this.panier.filter(p => p.userId === this.user._id);
+
+        this.panierCount = userPanier.reduce(
+          (total, item) => total + item.quantite,
+          0
+        );
+      },
+      error: (err) => {
+        console.error("Erreur panier :", err);
+      }
+    });
   }
 
   launchsearch() {
@@ -65,7 +120,7 @@ export class NavbarComponent implements OnInit {
         this.produits = res;
       },
       error: (err) => {
-        console.error("Erreur lors de la récupération des produits :", err);
+        console.error("Erreur produits :", err);
       }
     });
   }
@@ -78,11 +133,13 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  // 🔥 logout optionnel
+  // 🔥 LOGOUT
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+
     this.user = null;
     this.initial = '';
+    this.panierCount = 0;
   }
 }

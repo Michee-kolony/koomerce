@@ -138,9 +138,10 @@
       <span class="text-xs">Boutique</span>
     </a>
 
-  <a  routerLink="/koomerce/panier" class="relative flex flex-col items-center text-decoration-none text-gray-600 hover:text-red-500 transition">
+<a routerLink="/koomerce/panier" 
+   class="relative flex flex-col items-center text-decoration-none text-gray-600 hover:text-red-500 transition">
 
-  <!-- Panier Icon -->
+  <!-- Icon -->
   <svg xmlns="http://www.w3.org/2000/svg" 
        class="h-6 w-6 mb-1 transition-transform duration-200 hover:scale-110" 
        fill="none" 
@@ -154,9 +155,10 @@
 
   </svg>
 
-  <!-- Badge -->
-  <span class="absolute top-0 right-[80%] bg-red-500 text-white text-[10px] px-1.5 py-[2px] rounded-full">
-    31
+  <!-- 🔥 BADGE (UNIQUEMENT SI CONNECTÉ ET > 0) -->
+  <span *ngIf="user && panierCount > 0"
+        class="absolute top-0 right-[80%] bg-red-500 text-white text-[10px] px-1.5 py-[2px] rounded-full">
+    {{ panierCount }}
   </span>
 
   <span class="text-xs">Panier</span>
