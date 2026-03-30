@@ -14,11 +14,11 @@
 
         <p *ngIf="loading">Chargement du panier...</p>
 
-        <div *ngFor="let produit of produits" [routerLink]="['/koomerce/details', produit.produitId]"
+        <div *ngFor="let produit of produits"
              class="bg-white rounded-2xl shadow-md p-4 flex flex-col md:flex-row items-center gap-4">
 
-          <img [src]="produit.image"
-               class="w-28 h-28 object-cover rounded-xl"
+          <img [src]="produit.image" [routerLink]="['/koomerce/details', produit.produitId]"
+               class="w-28 h-28 object-cover rounded-xl cursor-pointer"
                alt="produit">
 
           <div class="flex-1 w-full">
