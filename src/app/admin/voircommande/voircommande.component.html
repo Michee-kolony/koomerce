@@ -1,0 +1,107 @@
+<div class="min-h-screen  p-4 md:p-6">
+
+  <!-- CARD -->
+  <div *ngIf="commande"
+       class="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl overflow-hidden">
+
+    <!-- IMAGE -->
+    <div class="h-64 md:h-80">
+      <img [src]="commande.image1"
+           class="w-full h-full object-cover"/>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="p-5 md:p-8 space-y-5">
+
+      <!-- HEADER -->
+      <div class="flex flex-col md:flex-row justify-between gap-3">
+        <h1 class="text-xl font-bold">{{ commande.titre }}</h1>
+
+        <span class="text-red-500 font-bold text-xl">
+          ${{ commande.prix }}
+        </span>
+      </div>
+
+      <!-- STATUS DISPLAY -->
+      <div class="flex items-center gap-3">
+
+        <span *ngIf="commande.status === 'Livrée'"
+              class="bg-green-500 text-white px-3 py-1 rounded-full text-sm">
+          Livrée
+        </span>
+
+        <span *ngIf="commande.status === 'En cours'"
+              class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm">
+          En cours
+        </span>
+
+        <span *ngIf="commande.status === 'En attente'"
+              class="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm">
+          En attente
+        </span>
+      </div>
+
+      <!-- CHANGE STATUS -->
+      <div class="bg-gray-100 p-4 rounded-xl space-y-2">
+        <p class="font-semibold">Modifier le statut :</p>
+
+        <div class="flex flex-wrap gap-2">
+
+          <button *ngFor="let s of statusOptions"
+                  (click)="updateStatus(s)"
+                  class="px-3 py-1 rounded-lg border text-sm hover:bg-black hover:text-white transition">
+
+            {{ s }}
+
+          </button>
+
+        </div>
+      </div>
+
+      <!-- INFOS -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+
+        <div class="bg-gray-100 p-3 rounded-lg">
+          <p class="font-semibold">Client</p>
+          <p>{{ commande.nomclient }}</p>
+        </div>
+
+        <div class="bg-gray-100 p-3 rounded-lg">
+          <p class="font-semibold">Téléphone</p>
+          <p>{{ commande.telephoneclient }}</p>
+        </div>
+
+        <div class="bg-gray-100 p-3 rounded-lg">
+          <p class="font-semibold">Quantité</p>
+          <p>{{ commande.quantite }}</p>
+        </div>
+
+        <div class="bg-gray-100 p-3 rounded-lg">
+          <p class="font-semibold">Date</p>
+          <p>{{ timeAgo(commande.createdAt) }}</p>
+        </div>
+
+      </div>
+
+      <!-- ACTION DELETE -->
+      <div class="pt-4">
+        <button (click)="deleteCommande()"
+                class="bg-red-600 text-white px-4 py-2 rounded-xl hover:bg-red-700 transition w-full md:w-auto">
+
+          Supprimer la commande
+
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+  <!-- LOADER -->
+  <div *ngIf="loading"
+       class="fixed inset-0 flex justify-center items-center bg-white/50 backdrop-blur-sm z-50">
+    <div class="loader"></div>
+  </div>
+

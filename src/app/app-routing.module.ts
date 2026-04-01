@@ -20,6 +20,7 @@ import { DeletecountComponent } from './client/deletecount/deletecount.component
 import { ConfidentialiteComponent } from './client/confidentialite/confidentialite.component';
 import { ContactComponent } from './client/contact/contact.component';
 import { MessageComponent } from './admin/message/message.component';
+import { VoircommandeComponent } from './admin/voircommande/voircommande.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/koomerce', pathMatch: 'full'},
@@ -49,7 +50,8 @@ const routes: Routes = [
       {path:'publier', component: PublierComponent},
       {path:'gestion', component: GestionComponent},
       {path:'commande', component: CommandeComponent},
-      {path:'messages', component: MessageComponent}
+      {path:'messages', component: MessageComponent},
+      {path:'voircommande/:id', component: VoircommandeComponent}
     ]
   }
 
