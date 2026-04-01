@@ -59,18 +59,25 @@
             ${{ commande.prix }}
           </td>
 
-          <!-- STATUS -->
-          <td class="p-4">
-            <span *ngIf="commande.status === 'Livrée'"
-                  class="bg-green-500 text-white px-3 py-1 rounded-full text-xs">
-              Livrée
-            </span>
+        <!-- STATUS -->
+<td class="p-4">
 
-            <span *ngIf="commande.status !== 'Livrée'"
-                  class="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs">
-              En cours
-            </span>
-          </td>
+  <span *ngIf="commande.status === 'Livrée'"
+        class="bg-green-500 text-white px-3 py-1 rounded-full text-xs">
+    Livrée
+  </span>
+
+  <span *ngIf="commande.status === 'En cours'"
+        class="bg-blue-500 text-white px-3 py-1 rounded-full text-xs">
+    En cours
+  </span>
+
+  <span *ngIf="commande.status === 'En attente'"
+        class="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs">
+    En attente
+  </span>
+
+</td>
 
           <td class="p-4 text-gray-500 text-sm">
             {{ timeAgo(commande.createdAt) }}

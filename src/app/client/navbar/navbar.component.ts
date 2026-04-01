@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { interval, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 interface Produit {
   _id?: string;
@@ -50,7 +51,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   // 🔥 RXJS
   panierSubscription!: Subscription;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.getProduits();
@@ -137,7 +138,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-
+    this.router.navigate(['/login']);
     this.user = null;
     this.initial = '';
     this.panierCount = 0;
