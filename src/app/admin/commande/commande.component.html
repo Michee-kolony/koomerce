@@ -40,7 +40,7 @@
 
         <tr *ngFor="let commande of filteredCommandes()"
             [routerLink]="['/admin/voircommande', commande._id]"
-            class="border-b hover:bg-gray-50 transition">
+            class="border-b hover:bg-gray-50 transition cursor-pointer">
 
           <!-- PRODUIT -->
           <td class="p-4 flex items-center gap-3">
