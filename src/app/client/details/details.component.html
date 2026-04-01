@@ -69,8 +69,14 @@
 
           </button>
 
-          <button class="w-full border border-gray-300 hover:bg-gray-100 py-3 rounded-xl font-semibold transition">
-            Acheter maintenant
+          <button (click)="envoyerCommande()" class="w-full border border-gray-300 hover:bg-gray-100 py-3 rounded-xl font-semibold transition">
+            <span *ngIf="!loading2">Commander maintenant</span>
+
+              <span *ngIf="loading2">
+          <i class="fas fa-spinner fa-spin mr-2"></i>
+          Envoi de la commande...
+        </span>
+
           </button>
 
         </ng-container>

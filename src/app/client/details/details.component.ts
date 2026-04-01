@@ -25,10 +25,14 @@ interface Article {
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
+
 export class DetailsComponent implements OnInit, AfterViewInit {
 
   urlapi = "https://api-koomerce.shop/articles";
   urlpanier = "https://api-koomerce.shop/panier";
+  urlcommande = "https://api-koomerce.shop/commande";
+
+  loading2: boolean = false;
 
   article: Article | null = null;
   images: string[] = [];
@@ -49,6 +53,8 @@ export class DetailsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // ❌ SUPPRIMÉ appel inutile de envoyerCommande()
 
     const storedUser = localStorage.getItem("user");
 
@@ -157,5 +163,41 @@ export class DetailsComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.showPopup = false;
     }, 2500);
+  }
+
+  // 🔥 PASSER COMMANDE RAPIDE
+  envoyerCommande() {
+
+    this.loading2 = true;
+
+    if (!this.article || !this.user) {
+      console.error("❌ article ou user non chargé");
+      this.loading2 = false;
+      return;
+    }
+
+    const commande = {
+      clientId: this.user._id, 
+      titre: this.article.titre,
+      image1: this.article.image1,
+      prix: this.article.prix,
+      quantite: this.quantity,
+      nomclient: this.user.nom,
+      telephoneclient: this.user.telephone,
+      nomvendeur: this.article.nomvendeur,
+      numerovendeur: this.article.telephonev
+    };
+
+    this.http.post(this.urlcommande, commande).subscribe({
+      next: (res) => {
+        this.showToast("Commande passée avec succès");
+        this.loading2 = false;
+      },
+      error: (err) => {
+        console.error(err);
+        this.showToast("Erreur lors de la commande");
+        this.loading2 = false;
+      }
+    });
   }
 }

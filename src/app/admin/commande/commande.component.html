@@ -1,41 +1,91 @@
-<div class="p-6 space-y-6">
+<div class="p-6 space-y-6 bg-gray-50 min-h-screen">
 
-  <!-- BARRE DE RECHERCHE -->
-  <div class="flex justify-between items-center mb-6">
+  <!-- HEADER -->
+  <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
     <h1 class="text-2xl font-bold text-gray-800">Commandes</h1>
+
     <input type="text"
            [(ngModel)]="searchTerm"
-           placeholder="Rechercher une commande..."
-           class="border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-red-500 focus:outline-none w-full max-w-xs"/>
+           placeholder="Rechercher par produit ou client..."
+           class="border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-red-500 focus:outline-none w-full sm:w-80"/>
   </div>
 
-  <!-- LISTE DES COMMANDES -->
-  <div class="space-y-4">
-    <div *ngFor="let commande of filteredCommandes()"
-         class="flex flex-col sm:flex-row justify-between items-center bg-white shadow rounded-xl p-4 w-full">
+  <!-- TABLE RESPONSIVE -->
+  <div class="overflow-x-auto bg-white rounded-xl shadow">
 
-      <!-- IMAGE PRODUIT -->
-      <div class="flex-shrink-0">
-        <img [src]="commande.image" alt="{{commande.produit}}" class="w-32 h-32 object-cover rounded-xl"/>
-      </div>
+    <table class="min-w-full text-sm text-left">
 
-      <!-- INFOS COMMANDE -->
-      <div class="flex-1 flex flex-col sm:flex-row justify-between items-start sm:items-center ml-0 sm:ml-6 mt-4 sm:mt-0 w-full">
-        <div class="flex-1 space-y-1">
-          <h2 class="text-lg font-semibold text-gray-800">{{ commande.produit }}</h2>
-          <p class="text-red-500 font-bold">${{ commande.prix }}</p>
-          <p><span class="font-semibold">Client:</span> {{ commande.client }}</p>
-          <p><span class="font-semibold">Téléphone:</span> {{ commande.telephone }}</p>
-          <p><span class="font-semibold">Adresse:</span> {{ commande.adresse }}</p>
-        </div>
+      <!-- HEADER TABLE -->
+      <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
+        <tr>
+          <th class="p-4">Produit</th>
+          <th class="p-4">Client</th>
+          <th class="p-4">Téléphone</th>
+          <th class="p-4">Quantité</th>
+          <th class="p-4">Prix</th>
+          <th class="p-4">Statut</th>
+          <th class="p-4">Date</th>
+        </tr>
+      </thead>
 
-        <!-- STATUT -->
-        <div class="mt-4 sm:mt-0">
-          <span *ngIf="commande.status === 'Livrée'" class="px-4 py-2 bg-green-500 text-white rounded-xl">Livrée</span>
-          <span *ngIf="commande.status === 'Non Livrée'" class="px-4 py-2 bg-yellow-500 text-white rounded-xl">Non Livrée</span>
-        </div>
-      </div>
+      <!-- BODY -->
+      <tbody>
 
-    </div>
+        <tr *ngFor="let commande of filteredCommandes()"
+            class="border-b hover:bg-gray-50 transition">
+
+          <!-- PRODUIT -->
+          <td class="p-4 flex items-center gap-3">
+            <img [src]="commande.image1"
+                 class="w-14 h-14 object-cover rounded-lg"/>
+            <span class="font-semibold">{{ commande.titre }}</span>
+          </td>
+
+          <!-- CLIENT -->
+          <td class="p-4">{{ commande.nomclient }}</td>
+
+          <!-- TELEPHONE -->
+          <td class="p-4">{{ commande.telephoneclient }}</td>
+
+          <!-- QUANTITE -->
+          <td class="p-4 text-center">{{ commande.quantite }}</td>
+
+          <!-- PRIX -->
+          <td class="p-4 font-bold text-red-500">
+            ${{ commande.prix }}
+          </td>
+
+          <!-- STATUS -->
+          <td class="p-4">
+            <span *ngIf="commande.status === 'Livrée'"
+                  class="bg-green-500 text-white px-3 py-1 rounded-full text-xs">
+              Livrée
+            </span>
+
+            <span *ngIf="commande.status !== 'Livrée'"
+                  class="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs">
+              En cours
+            </span>
+          </td>
+
+          <!-- DATE -->
+          <td class="p-4 text-gray-500 text-sm">
+            {{ timeAgo(commande.createdAt) }}
+          </td>
+
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
+
+
+
+<div *ngIf="loading" class="bg-white/50 fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center">
+  <div>
+    <span class="loader mx-auto text-center"></span>
   </div>
 </div>
