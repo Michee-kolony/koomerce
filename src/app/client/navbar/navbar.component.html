@@ -1,7 +1,7 @@
 <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-lg z-50">
   <div class="container mx-auto px-4 sm:px-6">
     <div class="flex items-center justify-between h-16 md:h-20">
-      
+
       <!-- Logo -->
       <div class="flex items-center">
         <a href="/" class="flex items-center space-x-2 text-black group text-decoration-none">
@@ -14,207 +14,241 @@
 
       <!-- Navigation Desktop -->
       <div class="hidden lg:flex items-center space-x-8">
-        <a routerLink="/" class="relative group text-decoration-none">
-          <span class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center space-x-1">
+
+        <!-- Accueil -->
+        <a routerLink="/"
+           routerLinkActive="text-red-500"
+           [routerLinkActiveOptions]="{ exact: true }"
+           class="relative group text-decoration-none">
+
+          <span class="text-gray-700 hover:text-red-500 font-medium transition-colors duration-200 flex items-center space-x-1">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
             </svg>
             <span>Accueil</span>
           </span>
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
         </a>
 
-        <a routerLink="/koomerce/produits" class="relative group text-decoration-none">
-          <span class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center space-x-1">
+        <!-- Boutique -->
+        <a routerLink="/koomerce/produits"
+           routerLinkActive="text-red-500"
+           class="relative group text-decoration-none">
+
+          <span class="text-gray-700 hover:text-red-500 font-medium transition-colors duration-200 flex items-center space-x-1">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
             </svg>
             <span>Boutique</span>
           </span>
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
         </a>
 
-        <a routerLink="/koomerce/panier" class="relative group text-decoration-none">
-          <span class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center space-x-1">
-              <!-- Panier Icon -->
-  <svg xmlns="http://www.w3.org/2000/svg" 
-       class="h-6 w-6 mb-1 transition-transform duration-200 hover:scale-110" 
-       fill="none" 
-       viewBox="0 0 24 24" 
-       stroke="currentColor">
+        <!-- Panier -->
+        <a routerLink="/koomerce/panier"
+           routerLinkActive="text-red-500"
+           class="relative group text-decoration-none">
 
-    <path stroke-linecap="round" 
-          stroke-linejoin="round" 
-          stroke-width="2" 
-          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.293 2.293A1 1 0 007 17h10m0 0a1 1 0 100 2 1 1 0 000-2zm-8 0a1 1 0 100 2 1 1 0 000-2z" />
+          <span class="text-gray-700 hover:text-red-500 font-medium transition-colors duration-200 flex items-center space-x-1">
 
-  </svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="h-6 w-6 mb-1 transition-transform duration-200 hover:scale-110"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke="currentColor">
+
+              <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.293 2.293A1 1 0 007 17h10m0 0a1 1 0 100 2 1 1 0 000-2zm-8 0a1 1 0 100 2 1 1 0 000-2z" />
+            </svg>
+
             <span>Panier</span>
           </span>
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
         </a>
-     
-        <a routerLink="/koomerce/contact" class="relative group text-decoration-none">
-          <span class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center space-x-1">
-           <!-- Phone Icon -->
-  <svg xmlns="http://www.w3.org/2000/svg" 
-       class="h-6 w-6 mb-1 transition-transform duration-200 hover:scale-110" 
-       fill="none" 
-       viewBox="0 0 24 24" 
-       stroke="currentColor">
 
-    <path stroke-linecap="round" 
-          stroke-linejoin="round" 
-          stroke-width="2" 
-          d="M3 5a2 2 0 012-2h3l2 5-2 1a11 11 0 005 5l1-2 5 2v3a2 2 0 01-2 2h-1C8.716 20 4 15.284 4 9V8a2 2 0 01-1-3z" />
+        <!-- Contact -->
+        <a routerLink="/koomerce/contact"
+           routerLinkActive="text-red-500"
+           class="relative group text-decoration-none">
 
-  </svg>
+          <span class="text-gray-700 hover:text-red-500 font-medium transition-colors duration-200 flex items-center space-x-1">
+
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="h-6 w-6 mb-1 transition-transform duration-200 hover:scale-110"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke="currentColor">
+
+              <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3l2 5-2 1a11 11 0 005 5l1-2 5 2v3a2 2 0 01-2 2h-1C8.716 20 4 15.284 4 9V8a2 2 0 01-1-3z" />
+            </svg>
+
             <span>Contact</span>
           </span>
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
         </a>
-         <a (click)="launchsearch()" class="relative group text-decoration-none cursor-pointer">
-          <span class="text-gray-700  font-medium transition-colors duration-200 flex items-center space-x-1">
+
+        <!-- Recherche -->
+        <a (click)="launchsearch()"
+           class="relative group text-decoration-none cursor-pointer">
+
+          <span class="text-gray-700 font-medium transition-colors duration-200 flex items-center space-x-1">
             <i class="fa-solid fa-search"></i>
           </span>
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
         </a>
+
       </div>
 
-      
-       <!-- 🔥 SI USER CONNECTÉ -->
-<div *ngIf="user; else notLogged" class="flex items-center space-x-3">
+      <!-- USER -->
+      <div *ngIf="user; else notLogged" class="flex items-center space-x-3">
 
-  <!-- Avatar initial -->
-  <div  routerLink="/koomerce/profil" class="w-10 h-10 cursor-pointer rounded-full bg-red-500 text-white flex items-center justify-center font-bold shadow">
-    {{ initial }}
-  </div>
+        <div routerLink="/koomerce/profil"
+             class="w-10 h-10 cursor-pointer rounded-full bg-red-500 text-white flex items-center justify-center font-bold shadow">
+          {{ initial }}
+        </div>
 
-  <!-- Nom utilisateur (optionnel) -->
-  <span class="text-sm font-medium text-gray-700 hidden  md:block">
-    {{ user?.nom || user?.name }}
-  </span>
+        <span class="text-sm font-medium text-gray-700 hidden md:block">
+          {{ user?.nom || user?.name }}
+        </span>
 
-  <!-- logout (optionnel) -->
-  <button (click)="logout()" class="text-xs text-red-500 hover:underline" title="Déconnexion">
-    <i class="fa-solid fa-arrow-right-from-bracket"></i>
-  </button>
+        <button (click)="logout()" class="text-xs text-red-500 hover:underline">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
 
-</div>
+      </div>
 
-<!-- 🔥 SI PAS CONNECTÉ -->
-<ng-template #notLogged>
-  <button routerLink="/login"
-          class="px-4 py-2 border text-black font-medium rounded-lg transition-all duration-300 transform hover:-translate-y-0.5">
-    Connexion
-  </button>
-</ng-template>
+      <ng-template #notLogged>
+        <button routerLink="/login"
+                class="px-4 py-2 border text-black font-medium rounded-lg transition-all duration-300 transform hover:-translate-y-0.5">
+          Connexion
+        </button>
+      </ng-template>
+
     </div>
   </div>
-
-
 </nav>
 
 <!-- Bottom Navigation -->
-<div  class="fixed lg:hidden bottom-0 left-0 w-full bg-white border-t shadow-lg z-50">
+<div class="fixed lg:hidden bottom-0 left-0 w-full bg-white border-t shadow-lg z-50">
   <div class="flex justify-around items-center h-16">
 
     <!-- Accueil -->
-    <a routerLink="/koomerce/home" class="flex flex-col text-decoration-none items-center text-gray-600 hover:text-blue-600">
-      <!-- Home Icon -->
+    <a routerLink="/koomerce/home"
+       routerLinkActive="text-red-500"
+       [routerLinkActiveOptions]="{ exact: true }"
+       class="flex flex-col text-decoration-none items-center text-gray-600 hover:text-red-500">
+
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
           d="M3 10l9-7 9 7v9a2 2 0 01-2 2h-4a2 2 0 01-2-2V12H9v7a2 2 0 01-2 2H3z" />
       </svg>
+
       <span class="text-xs">Accueil</span>
     </a>
 
-    <!-- Notifications -->
-    <a routerLink="/koomerce/produits" class="flex flex-col items-center text-decoration-none text-gray-600 hover:text-blue-600">
-      <!-- Bell Icon -->
-       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-        </svg>
+    <!-- Boutique -->
+    <a routerLink="/koomerce/produits"
+       routerLinkActive="text-red-500"
+       class="flex flex-col items-center text-decoration-none text-gray-600 hover:text-red-500">
+
+      <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+      </svg>
+
       <span class="text-xs">Boutique</span>
     </a>
 
-<a routerLink="/koomerce/panier" 
-   class="relative flex flex-col items-center text-decoration-none text-gray-600 hover:text-red-500 transition">
+    <!-- Panier -->
+    <a routerLink="/koomerce/panier"
+       routerLinkActive="text-red-500"
+       class="relative flex flex-col items-center text-decoration-none text-gray-600 hover:text-red-500 transition">
 
-  <!-- Icon -->
-  <svg xmlns="http://www.w3.org/2000/svg" 
-       class="h-6 w-6 mb-1 transition-transform duration-200 hover:scale-110" 
-       fill="none" 
-       viewBox="0 0 24 24" 
-       stroke="currentColor">
+      <!-- Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg"
+           class="h-6 w-6 mb-1 transition-transform duration-200 hover:scale-110"
+           fill="none"
+           viewBox="0 0 24 24"
+           stroke="currentColor">
 
-    <path stroke-linecap="round" 
-          stroke-linejoin="round" 
-          stroke-width="2" 
-          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.293 2.293A1 1 0 007 17h10m0 0a1 1 0 100 2 1 1 0 000-2zm-8 0a1 1 0 100 2 1 1 0 000-2z" />
+        <path stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.293 2.293A1 1 0 007 17h10m0 0a1 1 0 100 2 1 1 0 000-2zm-8 0a1 1 0 100 2 1 1 0 000-2z" />
+      </svg>
 
-  </svg>
+      <!-- Badge -->
+      <span *ngIf="user && panierCount > 0"
+            class="absolute top-0 right-[80%] bg-red-500 text-white text-[10px] px-1.5 py-[2px] rounded-full">
+        {{ panierCount }}
+      </span>
 
-  <!-- 🔥 BADGE (UNIQUEMENT SI CONNECTÉ ET > 0) -->
-  <span *ngIf="user && panierCount > 0"
-        class="absolute top-0 right-[80%] bg-red-500 text-white text-[10px] px-1.5 py-[2px] rounded-full">
-    {{ panierCount }}
-  </span>
-
-  <span class="text-xs">Panier</span>
-
-</a>
+      <span class="text-xs">Panier</span>
+    </a>
 
     <!-- Recherche -->
-    <a (click)="launchsearch()" class="flex flex-col items-center text-decoration-none text-gray-600 hover:text-blue-600">
-      <!-- Search Icon -->
+    <a (click)="launchsearch()"
+       class="flex flex-col items-center text-decoration-none text-gray-600 hover:text-red-500">
+
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
           d="M21 21l-4.35-4.35M16 10a6 6 0 11-12 0 6 6 0 0112 0z" />
       </svg>
+
       <span class="text-xs">Recherche</span>
     </a>
 
-    <a routerLink="/koomerce/contact" class="flex flex-col items-center text-decoration-none text-gray-600 hover:text-red-500 transition">
+    <!-- Contact -->
+    <a routerLink="/koomerce/contact"
+       routerLinkActive="text-red-500"
+       class="flex flex-col items-center text-decoration-none text-gray-600 hover:text-red-500 transition">
 
-  <!-- Phone Icon -->
-  <svg xmlns="http://www.w3.org/2000/svg" 
-       class="h-6 w-6 mb-1 transition-transform duration-200 hover:scale-110" 
-       fill="none" 
-       viewBox="0 0 24 24" 
-       stroke="currentColor">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           class="h-6 w-6 mb-1 transition-transform duration-200 hover:scale-110"
+           fill="none"
+           viewBox="0 0 24 24"
+           stroke="currentColor">
 
-    <path stroke-linecap="round" 
-          stroke-linejoin="round" 
-          stroke-width="2" 
-          d="M3 5a2 2 0 012-2h3l2 5-2 1a11 11 0 005 5l1-2 5 2v3a2 2 0 01-2 2h-1C8.716 20 4 15.284 4 9V8a2 2 0 01-1-3z" />
+        <path stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 5a2 2 0 012-2h3l2 5-2 1a11 11 0 005 5l1-2 5 2v3a2 2 0 01-2 2h-1C8.716 20 4 15.284 4 9V8a2 2 0 01-1-3z" />
+      </svg>
 
-  </svg>
+      <span class="text-xs">Contact</span>
+    </a>
 
-  <span class="text-xs">Contact</span>
+    <!-- Profil -->
+    <a routerLink="/koomerce/profil"
+       routerLinkActive="text-red-500"
+       class="flex flex-col items-center text-decoration-none text-gray-600 hover:text-red-500">
 
-</a>
+      <svg xmlns="http://www.w3.org/2000/svg"
+           fill="none"
+           viewBox="0 0 24 24"
+           stroke="currentColor"
+           class="h-6 w-6 mb-1">
 
- <!-- Profil -->
-<a routerLink="/koomerce/profil" class="flex flex-col items-center text-decoration-none text-gray-600 hover:text-blue-600">
-  
-  <!-- Icône tête outline -->
-  <svg xmlns="http://www.w3.org/2000/svg" 
-       fill="none" 
-       viewBox="0 0 24 24" 
-       stroke="currentColor"
-       class="h-6 w-6 mb-1">
-       
-    <path stroke-linecap="round" 
-          stroke-linejoin="round" 
-          stroke-width="2"
-          d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a7.5 7.5 0 0115 0" />
-    
-  </svg>
+        <path stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a7.5 7.5 0 0115 0" />
+      </svg>
 
-  <span class="text-xs">Profil</span>
-</a>
-
+      <span class="text-xs">Profil</span>
+    </a>
 
   </div>
 </div>
