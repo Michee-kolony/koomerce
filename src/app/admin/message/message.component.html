@@ -22,11 +22,6 @@
     />
   </div>
 
-  <!-- LOADING -->
-  <div *ngIf="loading" class="text-center text-gray-500">
-    Chargement des messages...
-  </div>
-
   <!-- LIST -->
   <div class="max-w-6xl mx-auto grid gap-4 md:grid-cols-2">
 
@@ -92,5 +87,11 @@
        class="text-center text-gray-500 mt-10">
     Aucun message trouvé
   </div>
+</div>
 
+
+<div *ngIf="loading" class="bg-white/50 fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center">
+  <div>
+    <span class="loader mx-auto text-center"></span>
+  </div>
 </div>
