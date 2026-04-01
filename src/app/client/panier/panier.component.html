@@ -89,21 +89,22 @@
 
 </section>
 
+<!-- 🔥 SI NON CONNECTÉ -->
 <ng-template #notLogged>
-  <div class="min-h-screen flex flex-col items-center justify-center bg-gray-50 text-center px-4">
+  <div class="min-h-screen flex items-center justify-center bg-gray-100 px-4">
 
-    <div class="bg-white border shadow-lg rounded-2xl p-8 max-w-md w-full">
+    <div class="bg-white p-8 rounded-2xl shadow-xl text-center max-w-md w-full space-y-6">
 
-      <h2 class="text-xl font-bold text-gray-800 mb-4">
-        Accès restreint
+      <h2 class="text-xl font-bold text-gray-800">
+        Vous devez être connecté
       </h2>
 
-      <p class="text-gray-600 mb-6">
-        Connecte-toi pour voir ton panier et passer commande.
+      <p class="text-gray-500 text-sm">
+        Connectez-vous pour accéder à cette page.
       </p>
 
-      <button (click)="goToLogin()"
-              class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl font-semibold transition">
+      <button routerLink="/login"
+              class="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition font-medium">
         Se connecter
       </button>
 
