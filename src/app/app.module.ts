@@ -19,7 +19,7 @@ import { PublierComponent } from './admin/publier/publier.component';
 import { GestionComponent } from './admin/gestion/gestion.component';
 import { FormsModule } from '@angular/forms';
 import { CommandeComponent } from './admin/commande/commande.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { ForgotPasswordComponent } from './client/forgot-password/forgot-password.component';
 import { ResetpasswordComponent } from './client/resetpassword/resetpassword.component';
 import { ProfilComponent } from './client/profil/profil.component';
@@ -28,6 +28,7 @@ import { ConfidentialiteComponent } from './client/confidentialite/confidentiali
 import { ContactComponent } from './client/contact/contact.component';
 import { MessageComponent } from './admin/message/message.component';
 import { VoircommandeComponent } from './admin/voircommande/voircommande.component';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,13 @@ import { VoircommandeComponent } from './admin/voircommande/voircommande.compone
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+     {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -53,7 +53,7 @@ export class LoginComponent {
         this.loading = false;
 
         // 🔥 STOCKAGE LOCALSTORAGE
-        localStorage.setItem("token", res.token);
+        localStorage.setItem("user_token", res.token);
         localStorage.setItem("user", JSON.stringify(res.user));
 
         this.successMessage = "Connexion réussie";
