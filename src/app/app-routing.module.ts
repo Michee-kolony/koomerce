@@ -21,6 +21,7 @@ import { ConfidentialiteComponent } from './client/confidentialite/confidentiali
 import { ContactComponent } from './client/contact/contact.component';
 import { MessageComponent } from './admin/message/message.component';
 import { VoircommandeComponent } from './admin/voircommande/voircommande.component';
+import { adminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: '/koomerce', pathMatch: 'full'},
@@ -43,7 +44,7 @@ const routes: Routes = [
 
   },
   {path:'auth', component: AuthComponent},
-  {path:'admin', component: AdminComponent,
+  {path:'admin', component: AdminComponent, canActivateChild:[adminGuard],
     children:[
       {path:'', redirectTo: 'dashboard', pathMatch:'full'},
       {path:'dashboard', component: DashboardComponent},

@@ -1,57 +1,67 @@
-<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-red-100 p-4">
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-red-50 to-red-100 p-4">
 
-  <div class="bg-white shadow-2xl rounded-3xl flex flex-col md:flex-row w-full max-w-5xl overflow-hidden transition-all duration-300 hover:shadow-3xl">
+  <div class="w-full max-w-5xl bg-white/80 backdrop-blur-xl shadow-2xl rounded-3xl overflow-hidden flex flex-col md:flex-row">
 
-    <!-- LEFT -->
-    <div class="hidden md:block md:w-1/2 bg-gradient-to-br from-red-600 to-red-700 relative overflow-hidden">
+    <!-- LEFT SIDE -->
+    <div class="hidden md:flex md:w-1/2 relative bg-gradient-to-br from-red-600 to-red-800">
+
       <img src="images/1 - Copie-Photoroom.png"
-           class="h-full w-full object-cover opacity-80">
+           class="absolute inset-0 w-full h-full object-cover opacity-30">
 
-      <div class="absolute inset-0 flex items-center justify-center text-white text-center">
-        <div>
-          <h2 class="text-4xl font-bold">Espace Admin</h2>
-          <p>Connexion sécurisée</p>
-        </div>
+      <div class="relative z-10 flex flex-col items-center justify-center text-center text-white p-10">
+        <h2 class="text-4xl font-extrabold mb-3">Espace Admin</h2>
+        <p class="text-red-100 text-sm">Gestion sécurisée de votre plateforme</p>
       </div>
+
     </div>
 
-    <!-- RIGHT -->
-    <div class="w-full md:w-1/2 p-8">
+    <!-- RIGHT SIDE -->
+    <div class="w-full md:w-1/2 p-8 md:p-12">
 
-      <h2 class="text-2xl font-bold text-center mb-6">Connexion Admin</h2>
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-800">Connexion</h2>
+        <p class="text-gray-500 text-sm mt-2">Accédez à votre tableau de bord</p>
+      </div>
 
-      <form (ngSubmit)="onSubmit()" class="space-y-4">
+      <form (ngSubmit)="onSubmit()" class="space-y-5">
 
         <!-- EMAIL -->
-        <input type="email"
-               [(ngModel)]="email"
-               name="email"
-               placeholder="Email"
-               required
-               class="w-full border p-3 rounded-xl focus:ring-2 focus:ring-red-300 outline-none">
+        <div>
+          <label class="text-sm text-gray-600">Email</label>
+          <input type="email"
+                 [(ngModel)]="email"
+                 name="email"
+                 placeholder="admin@example.com"
+                 required
+                 class="w-full mt-1 border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-red-400 focus:border-red-400 outline-none transition">
+        </div>
 
         <!-- PASSWORD -->
-        <div class="relative">
-          <input [type]="showPassword ? 'text' : 'password'"
-                 [(ngModel)]="password"
-                 name="password"
-                 placeholder="Mot de passe"
-                 required
-                 class="w-full border p-3 rounded-xl focus:ring-2 focus:ring-red-300 outline-none">
+        <div>
+          <label class="text-sm text-gray-600">Mot de passe</label>
 
-          <button type="button"
-                  (click)="togglePassword()"
-                  class="absolute right-3 top-3 text-sm text-gray-500">
-            {{ showPassword ? 'Cacher' : 'Voir' }}
-          </button>
+          <div class="relative mt-1">
+            <input [type]="showPassword ? 'text' : 'password'"
+                   [(ngModel)]="password"
+                   name="password"
+                   placeholder="••••••••"
+                   required
+                   class="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-red-400 focus:border-red-400 outline-none transition">
+
+            <button type="button"
+                    (click)="togglePassword()"
+                    class="absolute right-3 top-3 text-xs text-gray-500 hover:text-gray-700">
+              {{ showPassword ? 'Masquer' : 'Afficher' }}
+            </button>
+          </div>
         </div>
 
         <!-- BUTTON -->
         <button type="submit"
                 [disabled]="loading"
-                class="w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded-xl flex items-center justify-center transition">
+                class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center">
 
-          <!-- SPINNER -->
+          <!-- LOADING -->
           <div *ngIf="loading" class="flex items-center space-x-2">
             <svg class="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></svg>
             <span>Connexion...</span>
@@ -63,19 +73,20 @@
 
       </form>
     </div>
+
   </div>
 </div>
 
-<!-- SUCCESS POPUP -->
+
 <div *ngIf="showSuccessPopup"
-     class="fixed top-5 right-5 bg-green-500 text-white p-4 rounded-xl shadow-lg animate-fadeIn">
-  {{ successMessage }}
-  <button (click)="closeSuccess()" class="ml-3 font-bold">✖</button>
+     class="fixed top-5 right-5 bg-green-500 text-white px-5 py-3 rounded-xl shadow-lg animate-fadeIn flex items-center gap-3">
+  <span>✔ {{ successMessage }}</span>
+  <button (click)="closeSuccess()" class="font-bold">✖</button>
 </div>
 
-<!-- ERROR POPUP -->
+
 <div *ngIf="showErrorPopup"
-     class="fixed top-5 right-5 bg-red-500 text-white p-4 rounded-xl shadow-lg animate-fadeIn">
-  {{ errorMessage }}
-  <button (click)="closeError()" class="ml-3 font-bold">✖</button>
+     class="fixed top-5 right-5 bg-red-500 text-white px-5 py-3 rounded-xl shadow-lg animate-fadeIn flex items-center gap-3">
+  <span>⚠ {{ errorMessage }}</span>
+  <button (click)="closeError()" class="font-bold">✖</button>
 </div>
