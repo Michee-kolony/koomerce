@@ -282,40 +282,58 @@
 
   <!-- Résultats -->
   <div class="container mx-auto px-4 mt-10 pb-10">
-    <div class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
-      <div *ngFor="let produit of produitsFiltres" 
-            [routerLink]="['/koomerce/details', produit._id]"
-            (click)="launchsearch()"
-           class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-md hover:shadow-xl transition duration-300">
 
-        <!-- IMAGE FULL -->
-        <img [src]="produit.image1"
-             class="w-full h-64 object-cover transition duration-500 group-hover:scale-110" />
+    <!-- 🔥 AFFICHER SEULEMENT SI ON A TAPÉ -->
+    <div *ngIf="searchQuery.trim().length > 0">
 
-        <!-- OVERLAY GRADIENT -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+      <div class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
 
-        <!-- INFOS -->
-        <div class="absolute bottom-3 left-3 right-3 text-white">
-          <h3 class="text-sm font-semibold line-clamp-2">
-            {{ produit.titre }}
-          </h3>
+        <div *ngFor="let produit of produitsFiltres" 
+             [routerLink]="['/koomerce/details', produit._id]"
+             (click)="launchsearch()"
+             class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-md hover:shadow-xl transition duration-300">
 
-          <div class="flex items-center gap-2 mt-1">
-            <span class="font-bold text-red-400">
-              {{ produit.prixReduit || produit.prix }}$
-            </span>
-            <span *ngIf="produit.prixReduit && produit.prixReduit !== produit.prix" 
-                  class="text-xs line-through text-gray-300">
-              {{ produit.prix }}$
-            </span>
+          <!-- IMAGE -->
+          <img [src]="produit.image1"
+               class="w-full h-64 object-cover transition duration-500 group-hover:scale-110" />
+
+          <!-- OVERLAY -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+
+          <!-- INFOS -->
+          <div class="absolute bottom-3 left-3 right-3 text-white">
+            <h3 class="text-sm font-semibold line-clamp-2">
+              {{ produit.titre }}
+            </h3>
+
+            <div class="flex items-center gap-2 mt-1">
+              <span class="font-bold text-red-400">
+                {{ produit.prixReduit || produit.prix }}$
+              </span>
+
+              <span *ngIf="produit.prixReduit && produit.prixReduit !== produit.prix" 
+                    class="text-xs line-through text-gray-300">
+                {{ produit.prix }}$
+              </span>
+            </div>
           </div>
         </div>
+
       </div>
+
+      <!-- Aucun résultat -->
+      <div *ngIf="produitsFiltres.length === 0" 
+           class="text-center text-white mt-10 text-lg">
+        Aucun produit trouvé.
+      </div>
+
     </div>
 
-    <div *ngIf="produitsFiltres.length === 0" class="text-center text-white mt-10 text-lg">
-      Aucun produit trouvé.
+    <!-- 🔥 MESSAGE PAR DÉFAUT -->
+    <div *ngIf="searchQuery.trim().length === 0" 
+         class="text-center text-gray-300 mt-16 text-lg">
+      Commencez à taper pour rechercher un produit...
     </div>
+
   </div>
 </div>

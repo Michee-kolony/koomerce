@@ -126,14 +126,18 @@ export class NavbarComponent implements OnInit, OnDestroy {
     });
   }
 
-  get produitsFiltres(): Produit[] {
-    return this.produits.filter(p => {
-      const matchNom = p.titre.toLowerCase().includes(this.searchQuery.toLowerCase());
-      const matchCat = this.filterCategorie ? p.categorie === this.filterCategorie : true;
-      return matchNom && matchCat;
-    });
+ get produitsFiltres(): Produit[] {
+
+  if (!this.searchQuery || this.searchQuery.trim() === '') {
+    return []; // 🔥 rien afficher par défaut
   }
 
+  return this.produits.filter(p => {
+    const matchNom = p.titre.toLowerCase().includes(this.searchQuery.toLowerCase());
+    const matchCat = this.filterCategorie ? p.categorie === this.filterCategorie : true;
+    return matchNom && matchCat;
+  });
+}
   // 🔥 LOGOUT
   logout() {
     localStorage.removeItem('token');
