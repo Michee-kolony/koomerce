@@ -129,7 +129,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
  get produitsFiltres(): Produit[] {
 
   if (!this.searchQuery || this.searchQuery.trim() === '') {
-    return []; // 🔥 rien afficher par défaut
+    return []; //rien afficher par défaut
   }
 
   return this.produits.filter(p => {
@@ -138,7 +138,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     return matchNom && matchCat;
   });
 }
-  // 🔥 LOGOUT
+  //LOGOUT
+  
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
