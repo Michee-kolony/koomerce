@@ -100,42 +100,44 @@
   </div>
 </div>
 
-<!-- SUCCESS POPUP -->
-<div *ngIf="showSuccessPopup"
-     class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
 
-  <div class="bg-white p-6 rounded-xl text-center w-[90%] max-w-md">
+<!-- 🔔 TOAST POPUPS (BOTTOM RIGHT) -->
+<div class="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
 
-    <div class="text-green-600 text-4xl mb-3">
+  <!-- SUCCESS -->
+  <div *ngIf="showSuccessPopup"
+       class="animate-slideIn bg-white border-l-4 border-green-500 shadow-xl rounded-lg px-4 py-3 w-72 flex items-center gap-3">
+
+    <div class="text-green-600 text-xl">
       <i class="fas fa-check-circle"></i>
     </div>
 
-    <p class="font-bold text-lg">{{ successMessage }}</p>
+    <p class="text-sm text-gray-700 flex-1 font-medium mt-2">
+      {{ successMessage }}
+    </p>
 
     <button (click)="closeSuccess()"
-            class="mt-4 bg-green-600 text-white px-4 py-2 rounded">
-      OK
+            class="text-gray-400 hover:text-gray-600">
+      ✖
     </button>
-
   </div>
-</div>
 
-<!-- ERROR POPUP -->
-<div *ngIf="showErrorPopup"
-     class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+  <!-- ERROR -->
+  <div *ngIf="showErrorPopup"
+       class="animate-slideIn bg-white border-l-4 border-red-500 shadow-xl rounded-lg px-4 py-3 w-72 flex items-center gap-3">
 
-  <div class="bg-white p-6 rounded-xl text-center w-[90%] max-w-md">
-
-    <div class="text-red-600 text-4xl mb-3">
+    <div class="text-red-600 text-xl">
       <i class="fas fa-times-circle"></i>
     </div>
 
-    <p class="font-bold text-lg">{{ errorMessage }}</p>
+    <p class="text-sm text-gray-700 flex-1 font-medium mt-2">
+      {{ errorMessage }}
+    </p>
 
     <button (click)="closeError()"
-            class="mt-4 bg-red-600 text-white px-4 py-2 rounded">
-      Fermer
+            class="text-gray-400 hover:text-gray-600">
+      ✖
     </button>
-
   </div>
+
 </div>

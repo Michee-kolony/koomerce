@@ -39,7 +39,7 @@ export class RegisterComponent {
 
     // 🔥 VALIDATION SIMPLE
     if (!this.nom || !this.email || !this.telephone || !this.adresse || !this.password) {
-      this.errorMessage = "Tous les champs sont obligatoires";
+      this.errorMessage = "Champs sont obligatoires";
       this.showErrorPopup = true;
       return;
     }
