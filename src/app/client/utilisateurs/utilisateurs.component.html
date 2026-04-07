@@ -1,0 +1,51 @@
+
+<div *ngIf="loading" class="bg-white/50 fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center">
+  <div>
+    <span class="loader mx-auto text-center"></span>
+  </div>
+</div>
+
+<!-- LISTE -->
+<div *ngIf="!loading" class="p-4 bg-gray-100 min-h-screen">
+
+  <!-- VIDE -->
+  <div *ngIf="utilisateurs.length === 0" class="text-center text-gray-500 mt-10">
+    Aucun utilisateur trouvé
+  </div>
+
+  <!-- GRID -->
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+    <!-- CARD USER -->
+    <div *ngFor="let user of utilisateurs"
+         class="bg-white rounded-2xl shadow-md p-4 hover:shadow-lg transition">
+
+      <!-- AVATAR -->
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-12 h-12 rounded-full bg-red-500 text-white flex items-center justify-center font-bold text-lg">
+          {{ user.nom.charAt(0) }}
+        </div>
+
+        <div>
+          <h2 class="font-semibold text-gray-800">
+            {{ user.nom }}
+          </h2>
+          <p class="text-sm text-gray-500">
+            {{ user.email }}
+          </p>
+        </div>
+      </div>
+
+      <!-- INFOS -->
+      <div class="text-sm text-gray-600 space-y-1">
+        <p>{{ user.telephone }}</p>
+        <p class="text-gray-400 text-xs mt-2">
+          Rejoint le {{ formatDate(user.createdAt) }}
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

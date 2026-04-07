@@ -1,45 +1,58 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
   urlarticle = "https://api-koomerce.shop/articles";
   urlcommande = "https://api-koomerce.shop/commande";
+  urlclient = "https://api-koomerce.shop/client";
 
   totalCommandes = 0;
-  totalUsers = 0; // (à brancher si tu as endpoint users)
+  totalUsers = 0;
   totalArticles = 0;
   commandesToday = 0;
 
   notifications: any[] = [];
-
   loading: boolean = true;
+
+  private intervalId: any;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.loadDashboard();
+
+    // 🔥 auto refresh toutes les 10 sec
+    this.intervalId = setInterval(() => {
+      this.loadDashboard();
+    }, 10000);
   }
 
-  // 🔥 charger toutes les données en parallèle
+  ngOnDestroy(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
+
+  // 🔥 fonction principale (simple et fiable)
   loadDashboard() {
     forkJoin({
       articles: this.http.get<any[]>(this.urlarticle),
-      commandes: this.http.get<any[]>(this.urlcommande)
+      commandes: this.http.get<any[]>(this.urlcommande),
+      clients: this.http.get<any[]>(this.urlclient) // ✅ USERS
     }).subscribe({
-      next: ({ articles, commandes }) => {
+      next: ({ articles, commandes, clients }) => {
 
-        // 🔥 TOTAL ARTICLES
-        this.totalArticles = articles.length;
-
-        // 🔥 TOTAL COMMANDES
-        this.totalCommandes = commandes.length;
+        // 🔥 TOTALS
+        this.totalArticles = articles?.length || 0;
+        this.totalCommandes = commandes?.length || 0;
+        this.totalUsers = clients?.length || 0;
 
         // 🔥 COMMANDES AUJOURD’HUI
         const today = new Date().toDateString();
@@ -48,7 +61,7 @@ export class DashboardComponent implements OnInit {
           new Date(c.createdAt).toDateString() === today
         ).length;
 
-        // 🔥 NOTIFICATIONS (dernières commandes)
+        // 🔥 NOTIFICATIONS
         this.notifications = commandes
           .sort((a, b) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
@@ -71,9 +84,7 @@ export class DashboardComponent implements OnInit {
 
   // 🔥 format temps
   timeAgo(date: string): string {
-    const now = new Date().getTime();
-    const past = new Date(date).getTime();
-    const diff = Math.floor((now - past) / 1000);
+    const diff = Math.floor((Date.now() - new Date(date).getTime()) / 1000);
 
     if (diff < 10) return "À l’instant";
     if (diff < 60) return `Il y a ${diff}s`;
@@ -87,5 +98,4 @@ export class DashboardComponent implements OnInit {
     const days = Math.floor(hours / 24);
     return `Il y a ${days} j`;
   }
-
 }

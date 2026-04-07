@@ -46,6 +46,13 @@
         <span>Messages</span>
       </a>
 
+       <!-- Publicité -->
+      <a routerLink="/admin/utilisateurs"
+         class="flex items-center text-decoration-none  gap-3 px-4 py-3 rounded-xl hover:bg-red-50 text-gray-700 hover:text-red-500 transition">
+        <i class="fas fa-users"></i>
+        <span>Utilisateurs</span>
+      </a>
+
       <!-- Publicité -->
       <a routerLink="/admin/publicite"
          class="flex items-center text-decoration-none  gap-3 px-4 py-3 rounded-xl hover:bg-red-50 text-gray-700 hover:text-red-500 transition">
@@ -93,6 +100,7 @@
       <a routerLink="/admin/gestion" (click)="toggleSidebar()" class="block text-black text-decoration-none">Gestion</a>
       <a routerLink="/admin/commande" (click)="toggleSidebar()" class="block text-black text-decoration-none">Commandes</a>
      <a routerLink="/admin/messages" (click)="toggleSidebar()" class="block text-black text-decoration-none">Messages</a>
+       <a routerLink="/admin/utilisateurs" (click)="toggleSidebar()" class="block text-black text-decoration-none">Utilisateurs</a>
       <a routerLink="/admin/publicite" (click)="toggleSidebar()" class="block text-black text-decoration-none">Publicité</a>
     </nav>
 

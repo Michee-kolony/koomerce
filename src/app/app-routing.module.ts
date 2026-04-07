@@ -23,6 +23,7 @@ import { MessageComponent } from './admin/message/message.component';
 import { VoircommandeComponent } from './admin/voircommande/voircommande.component';
 import { adminGuard } from './guards/admin.guard';
 import { MescommandesComponent } from './client/mescommandes/mescommandes.component';
+import { UtilisateursComponent } from './client/utilisateurs/utilisateurs.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/koomerce', pathMatch: 'full'},
@@ -54,7 +55,8 @@ const routes: Routes = [
       {path:'gestion', component: GestionComponent},
       {path:'commande', component: CommandeComponent},
       {path:'messages', component: MessageComponent},
-      {path:'voircommande/:id', component: VoircommandeComponent}
+      {path:'voircommande/:id', component: VoircommandeComponent},
+      {path:'utilisateurs', component: UtilisateursComponent}
     ]
   }
 

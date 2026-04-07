@@ -30,6 +30,7 @@ import { MessageComponent } from './admin/message/message.component';
 import { VoircommandeComponent } from './admin/voircommande/voircommande.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { MescommandesComponent } from './client/mescommandes/mescommandes.component';
+import { UtilisateursComponent } from './client/utilisateurs/utilisateurs.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { MescommandesComponent } from './client/mescommandes/mescommandes.compon
     ContactComponent,
     MessageComponent,
     VoircommandeComponent,
-    MescommandesComponent
+    MescommandesComponent,
+    UtilisateursComponent
   ],
   imports: [
     BrowserModule,
