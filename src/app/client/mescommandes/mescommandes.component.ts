@@ -21,6 +21,7 @@ export class MescommandesComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.getUser();
     this.getCommandes();
   }

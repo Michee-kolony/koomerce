@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import Splide from '@splidejs/splide';
 
@@ -49,12 +49,12 @@ export class DetailsComponent implements OnInit, AfterViewInit {
   showPopup: boolean = false;
   popupMessage: string = '';
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // ❌ SUPPRIMÉ appel inutile de envoyerCommande()
+    //SUPPRIMÉ appel inutile de envoyerCommande()
 
     const storedUser = localStorage.getItem("user");
 
@@ -192,6 +192,9 @@ export class DetailsComponent implements OnInit, AfterViewInit {
       next: (res) => {
         this.showToast("Commande passée avec succès");
         this.loading2 = false;
+        setTimeout(()=>{
+          this.router.navigate(['/koomerce/mescommandes']);
+        }, 1000);
       },
       error: (err) => {
         console.error(err);
