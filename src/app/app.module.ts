@@ -29,6 +29,7 @@ import { ContactComponent } from './client/contact/contact.component';
 import { MessageComponent } from './admin/message/message.component';
 import { VoircommandeComponent } from './admin/voircommande/voircommande.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { MescommandesComponent } from './client/mescommandes/mescommandes.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     ConfidentialiteComponent,
     ContactComponent,
     MessageComponent,
-    VoircommandeComponent
+    VoircommandeComponent,
+    MescommandesComponent
   ],
   imports: [
     BrowserModule,

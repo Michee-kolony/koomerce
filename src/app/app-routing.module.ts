@@ -22,6 +22,7 @@ import { ContactComponent } from './client/contact/contact.component';
 import { MessageComponent } from './admin/message/message.component';
 import { VoircommandeComponent } from './admin/voircommande/voircommande.component';
 import { adminGuard } from './guards/admin.guard';
+import { MescommandesComponent } from './client/mescommandes/mescommandes.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/koomerce', pathMatch: 'full'},
@@ -39,7 +40,8 @@ const routes: Routes = [
       {path:'profil', component: ProfilComponent},
       {path:'deletecount', component: DeletecountComponent},
       {path:'confidentialite', component: ConfidentialiteComponent},
-      {path:'contact', component: ContactComponent}
+      {path:'contact', component: ContactComponent},
+      {path:'mescommandes', component : MescommandesComponent}
     ]
 
   },
