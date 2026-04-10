@@ -35,10 +35,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
   articlesFemme: Article[] = [];
   articlesHomme: Article[] = [];
 
-  // 🔥 HERO DATA
   heroArticles: Article[] = [];
 
   private heroInitialized = false;
+
+  // 🔔 NOTIFICATION SYSTEM
+  showNotification = false;
+  notification = '';
+  notificationImage = '';
+  private reminderTimer: any;
+
+  // 🔥 NOUVEAU : dernier article global
+  latestArticle: Article | null = null;
 
   constructor(private http: HttpClient) {}
 
@@ -54,6 +62,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
             new Date(a.createdAt).getTime()
         );
 
+        // 🔥 LE PLUS IMPORTANT : dernier article global
+        this.latestArticle = sorted[0] || null;
+
         this.articlesFemme = sorted.filter(
           a => a.genre.toLowerCase() === 'femme'
         );
@@ -62,32 +73,30 @@ export class HomeComponent implements OnInit, AfterViewInit {
           a => a.genre.toLowerCase() === 'homme'
         );
 
-        // 🔥 HERO = produits en réduction 50%
         this.heroArticles = sorted.filter(
           a => a.reduction === 50
         );
 
         this.loading = false;
 
-        // ⚠️ IMPORTANT: attendre DOM Angular
         setTimeout(() => {
           this.initHero();
           this.initProductCarousels();
         }, 200);
+
+        this.startReminderTimer();
       },
       (err) => console.error('Erreur API:', err)
     );
   }
 
-  ngAfterViewInit(): void {
-    // ne rien init ici pour éviter conflit Angular + Splide
-  }
+  ngAfterViewInit(): void {}
 
   launchsearch() {
     this.search = !this.search;
   }
 
-  // ================= HERO SPLIDE =================
+  // ================= HERO =================
   initHero() {
 
     if (this.heroInitialized) return;
@@ -108,7 +117,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }).mount();
   }
 
-  // ================= AUTRES CAROUSELS =================
+  // ================= CAROUSELS =================
   initProductCarousels() {
 
     if (this.articlesFemme.length) {
@@ -140,5 +149,36 @@ export class HomeComponent implements OnInit, AfterViewInit {
         }
       }).mount();
     }
+  }
+
+  // ================= ⏰ 1 MIN TIMER =================
+  startReminderTimer() {
+
+    if (this.reminderTimer) {
+      clearTimeout(this.reminderTimer);
+    }
+
+    this.reminderTimer = setTimeout(() => {
+      this.sendArticleReminder();
+    }, 60 * 1000);
+  }
+
+  // ================= 🔔 TOAST =================
+  sendArticleReminder() {
+
+    const article = this.latestArticle;
+
+    if (!article) return;
+
+    this.notification = `Nouvel article : ${article.titre}`;
+    this.notificationImage = article.image1;
+
+    this.showNotification = true;
+
+    setTimeout(() => {
+      this.showNotification = false;
+    }, 5000);
+
+    this.startReminderTimer();
   }
 }
