@@ -11,68 +11,35 @@ export class ProduitsComponent implements OnInit {
   url = "https://api-koomerce.shop/articles";
 
   produits: any[] = [];
+  paginatedProduits: any[] = [];
+
   loading: boolean = true;
+
+  // 🔥 PAGINATION
+  currentPage: number = 1;
+  itemsPerPage: number = 8;
+  totalPages: number = 1;
+  pages: number[] = [];
 
   private socket!: WebSocket;
 
-  // 🔔 Notification UI
   notification: string = '';
   notificationImage: string = '';
   showNotification: boolean = false;
 
-  // 🔊 AUDIO
   private audio = new Audio('/notifications.mp3');
   private audioUnlocked = false;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
     this.loadProduits();
     this.connectWebSocket();
-
-    // 🔓 IMPORTANT : débloquer audio avec vraie interaction
     this.forceUnlockAudio();
   }
 
   // =========================
-  // 🔓 AUDIO UNLOCK ULTRA FIABLE
-  // =========================
-  forceUnlockAudio() {
-
-    const events = ['click', 'touchstart', 'keydown'];
-
-    const unlock = () => {
-
-      if (this.audioUnlocked) return;
-
-      const testAudio = new Audio('/notifications.mp3');
-
-      testAudio.play()
-        .then(() => {
-          testAudio.pause();
-          testAudio.currentTime = 0;
-
-          this.audioUnlocked = true;
-          console.log("🔊 AUDIO DÉBLOQUÉ ✔");
-
-          // 🔥 supprimer listeners après unlock
-          events.forEach(e => document.removeEventListener(e, unlock));
-        })
-        .catch(() => {
-          // silencieux
-        });
-    };
-
-    // 🔥 écouter plusieurs types d'interaction (très important)
-    events.forEach(e => {
-      document.addEventListener(e, unlock, { once: true });
-    });
-  }
-
-  // =========================
-  // 📦 Charger produits API
+  // 📦 LOAD API
   // =========================
   loadProduits() {
     this.http.get<any[]>(this.url).subscribe({
@@ -91,13 +58,65 @@ export class ProduitsComponent implements OnInit {
           image: p.image1
         }));
 
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error("Erreur API :", err);
+        this.setupPagination();
         this.loading = false;
       }
     });
+  }
+
+  // =========================
+  // 🔥 PAGINATION LOGIC
+  // =========================
+  setupPagination() {
+    this.totalPages = Math.ceil(this.produits.length / this.itemsPerPage);
+    this.generatePages();
+    this.updatePaginatedProduits();
+  }
+
+  generatePages() {
+    const maxVisible = 5;
+    const pages: number[] = [];
+
+    let start = Math.max(1, this.currentPage - 2);
+    let end = Math.min(this.totalPages, start + maxVisible - 1);
+
+    if (end - start < maxVisible - 1) {
+      start = Math.max(1, end - maxVisible + 1);
+    }
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+
+    this.pages = pages;
+  }
+
+  updatePaginatedProduits() {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+
+    this.paginatedProduits = this.produits.slice(start, end);
+    this.generatePages();
+  }
+
+  goToPage(page: number) {
+    this.currentPage = page;
+    this.updatePaginatedProduits();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.updatePaginatedProduits();
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updatePaginatedProduits();
+    }
   }
 
   // =========================
@@ -106,10 +125,6 @@ export class ProduitsComponent implements OnInit {
   connectWebSocket() {
 
     this.socket = new WebSocket("wss://api-koomerce.shop/");
-
-    this.socket.onopen = () => {
-      console.log("🟢 WebSocket connecté");
-    };
 
     this.socket.onmessage = (event) => {
 
@@ -128,50 +143,50 @@ export class ProduitsComponent implements OnInit {
           image: article.image1
         };
 
-        // 🔥 Ajouter en haut
         this.produits.unshift(produit);
 
-        // 🔔 notification UI
-        this.showNotif(`🆕 ${article.titre}`, article.image1);
+        this.setupPagination();
 
-        // 🔊 son sécurisé
+        this.showNotif(`🆕 ${article.titre}`, article.image1);
         this.playNotificationSound();
       }
     };
-
-    this.socket.onclose = () => {
-      console.log("🔴 WebSocket fermé");
-    };
   }
 
   // =========================
-  // 🔊 SON SAFE
+  // 🔊 AUDIO
   // =========================
-  playNotificationSound() {
+  forceUnlockAudio() {
+    const unlock = () => {
+      if (this.audioUnlocked) return;
 
-    if (!this.audioUnlocked) {
-      console.log("🔇 Audio bloqué (pas encore unlock)");
-      return;
-    }
+      this.audio.play().then(() => {
+        this.audio.pause();
+        this.audio.currentTime = 0;
+        this.audioUnlocked = true;
+      }).catch(() => {});
+    };
+
+    document.addEventListener('click', unlock, { once: true });
+  }
+
+  playNotificationSound() {
+    if (!this.audioUnlocked) return;
 
     this.audio.currentTime = 0;
-
-    this.audio.play().catch(err => {
-      console.log("Son bloqué :", err);
-    });
+    this.audio.play().catch(() => {});
   }
 
   // =========================
-  // 🔔 NOTIFICATION UI
+  // 🔔 NOTIF
   // =========================
   showNotif(message: string, image?: string) {
-
     this.notification = message;
     this.notificationImage = image || '';
     this.showNotification = true;
 
     setTimeout(() => {
       this.showNotification = false;
-    }, 3500);
+    }, 3000);
   }
 }
